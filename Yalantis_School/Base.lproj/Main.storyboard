@@ -46,6 +46,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="T4K-HE-WXs">
+                        <barButtonItem key="backBarButtonItem" title=" " id="ZCL-Hv-pf0"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="settings" id="eQ7-ci-u33">
                             <connections>
                                 <segue destination="YrM-tc-Tix" kind="show" id="YiC-sK-gKc"/>

@@ -15,7 +15,7 @@ class ViewController: BackgroundViewController {
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var answerLabel: UILabel! {
         didSet {
-            answerLabel.text = "Answer will be here"
+            answerLabel.text = "Shake me to get the answer"
             answerLabel.textColor = .white
         }
     }

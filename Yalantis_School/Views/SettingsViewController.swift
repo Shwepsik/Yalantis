@@ -37,10 +37,27 @@ class SettingsViewController: BackgroundViewController {
         if answerTextField.text!.isEmpty {
             self.showAlert(title: "Please add some text", messgae: "", style: .alert)
         } else {
+            /*
+            Введеные пользователем ответы не сохраняются в БД. из фидбека
+            Прошу заметить что любые действия связанные с Entity CoreData приводят к сохранению в текущей сессии
+            Пользователь может сворачивать приложение сколько угодно раз и Entity не потеряет свои данные
+            После того как пользователь закроет приложение будет вызван метод
+             
+            func applicationWillTerminate(_ application: UIApplication) {
+            // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+            // Saves changes in the application's managed object context before the application terminates.
+            PersistenceService.shared.save()
+            }
+ */
             let answersPack = AnswerFromBall(context: PersistenceService.shared.context)
             answersPack.answer = answerTextField.text!
             self.answerTextField.text = ""
             self.showAlert(title: "Perfect", messgae: "", style: .alert)
+            /*
+             Я добавил принт для отображения ответов в БД в MainViewController
+             */
+            
+            
         }
     }
 }

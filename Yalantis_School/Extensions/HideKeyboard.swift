@@ -12,15 +12,18 @@ import UIKit
 
 extension UIViewController {
     
-    func hideKeyboard() {
+    func tapToHide() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    // Settings и главный контроллеры зачем-то сразу прячут клавиатуру.
-    // Я просто создаю UITapGestureRecognizer в который кладу селектор , view.endEditing(true) не сработает до тех пор пока я не нажму на экран
+    /*
+     Settings и главный контроллеры зачем-то сразу прячут клавиатуру.
+     Возможно, нейминг функции ввел Вас в заблуждение
+     Я просто создаю UITapGestureRecognizer в селектор которого кладу функцию , view.endEditing(true) не сработает до тех пор пока я не нажму на экран
+     */
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

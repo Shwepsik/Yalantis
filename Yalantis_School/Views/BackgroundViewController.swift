@@ -9,13 +9,12 @@
 import UIKit
 
 class BackgroundViewController: UIViewController {
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImage.image = UIImage(named: "sky")
+        backgroundImage.image = Asset.sky.image
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -25,6 +24,6 @@ class BackgroundViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 1/255, green: 1/255, blue: 63/255, alpha: 1.0)
         navigationItem.title = "Magic Ball"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)]
-        
+
     }
 }

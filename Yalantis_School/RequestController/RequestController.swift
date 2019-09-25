@@ -14,26 +14,27 @@ typealias ResponseBlock = (_ result: Any?, _ error: Error?)
     -> Void
 
 class RequestController {
-
     let baseUrl: String = "https://8ball.delegator.com/magic/JSON/"
 
-    func tryLoadInfo(method: HTTPMethod, params: Parameters?, headers: HTTPHeaders?, path: String, responseBlock: @escaping ResponseBlock) {
+    func tryLoadInfo(method: HTTPMethod,
+                     params: Parameters?,
+                     headers: HTTPHeaders?,
+                     path: String,
+                     responseBlock: @escaping ResponseBlock) {
 
         let fullPath: String = baseUrl + path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
 
         if let url: URL = URL(string: fullPath) {
-
-            request(url, method: method, parameters: params, headers: headers).validate().responseJSON { (responseJSON) in
+            request(url, method: method, parameters: params, headers: headers).validate()
+                .responseJSON { (responseJSON) in
                 switch responseJSON.result {
                 case .success:
                     guard let jsonArray = responseJSON.result.value as? JSON else {
                         return
                     }
                     responseBlock(jsonArray, nil)
-
                 case .failure(let error):
                     responseBlock(nil, error)
-
                 }
             }
         }
@@ -56,7 +57,8 @@ class RequestController {
 
     func jsonToNSData(json: Any) -> Data? {
         do {
-            return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+            return try JSONSerialization.data(withJSONObject: json,
+                                              options: JSONSerialization.WritingOptions.prettyPrinted)
         } catch let myJSONError {
             print(myJSONError)
         }

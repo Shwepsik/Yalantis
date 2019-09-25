@@ -21,9 +21,9 @@ class BackgroundViewController: UIViewController {
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        navigationController?.navigationBar.barTintColor = UIColor.init(red: 1/255, green: 1/255, blue: 63/255, alpha: 1.0)
-        navigationItem.title = "Magic Ball"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)]
-
+        navigationController?.navigationBar.barTintColor = ColorName.navigationBarTintColor.color
+        navigationItem.title = L10n.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: ColorName.navigationBarTitleColor.color]
     }
 }

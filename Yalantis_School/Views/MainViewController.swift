@@ -28,7 +28,8 @@ class MainViewController: BackgroundViewController {
 
     func createPhrase() {
         let answersPack = PersistenceService.shared.fetch(AnswerFromBall.self)
-        let phrases = ["Try to think about it tomorrow", "Great idea!", "Burn them all", "It’s better to wait a little", "Ask your heart"]
+        let phrases = ["Try to think about it tomorrow", "Great idea!", "Burn them all",
+                       "It’s better to wait a little", "Ask your heart"]
 
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
@@ -43,7 +44,6 @@ class MainViewController: BackgroundViewController {
     }
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-
         if motion == .motionShake {
             if questionTextField.text != "" {
                 request.tryLoadAnswer(questionTextField.text!) { (answer, error) in

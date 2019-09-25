@@ -6,7 +6,7 @@ target 'Yalantis_School' do
   #Networking
   pod 'Alamofire', '~> 4.5'
   #CleanCode
-  pod 'SwiftLint'
+  pod 'SwiftLint', '~> 0.35'
   pod 'SwiftGen', '~> 6.0'
 
 end

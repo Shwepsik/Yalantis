@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		38533A242338FE86002108C4 /* assets-images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A222338FE86002108C4 /* assets-images.swift */; };
 		38533A252338FE86002108C4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A232338FE86002108C4 /* strings.swift */; };
+		38533B62233BF5DC002108C4 /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38533B61233BF5DC002108C4 /* Colors.txt */; };
+		38533B64233BF6C9002108C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533B63233BF6C9002108C4 /* Colors.swift */; };
 		3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B52309CA470051BA08 /* AppDelegate.swift */; };
 		3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B72309CA470051BA08 /* MainViewController.swift */; };
 		3899F3BB2309CA470051BA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3899F3B92309CA470051BA08 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		38533A222338FE86002108C4 /* assets-images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "assets-images.swift"; sourceTree = "<group>"; };
 		38533A232338FE86002108C4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		38533B61233BF5DC002108C4 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
+		38533B63233BF6C9002108C4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3899F3B22309CA470051BA08 /* Yalantis_School.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yalantis_School.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3899F3B52309CA470051BA08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3899F3B72309CA470051BA08 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				3899F3BC2309CA470051BA08 /* Yalantis_School.xcdatamodeld */,
 				38D7684E23383BDD00BB7CA9 /* Localizable.strings */,
 				38D768512338413F00BB7CA9 /* swiftgen.yml */,
+				38533B61233BF5DC002108C4 /* Colors.txt */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			children = (
 				38533A222338FE86002108C4 /* assets-images.swift */,
 				38533A232338FE86002108C4 /* strings.swift */,
+				38533B63233BF6C9002108C4 /* Colors.swift */,
 			);
 			path = SwiftGen;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 			files = (
 				3899F3C32309CA480051BA08 /* LaunchScreen.storyboard in Resources */,
 				38D768522338413F00BB7CA9 /* swiftgen.yml in Resources */,
+				38533B62233BF5DC002108C4 /* Colors.txt in Resources */,
 				38D7684F23383BDD00BB7CA9 /* Localizable.strings in Resources */,
 				3899F3C02309CA480051BA08 /* Assets.xcassets in Resources */,
 				3899F3BB2309CA470051BA08 /* Main.storyboard in Resources */,
@@ -283,7 +290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$PODS_ROOT/SwiftGen/bin/swiftgen\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPods/SwiftGen/bin/swiftgen\n";
 		};
 		38D76854233846D400BB7CA9 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -301,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$PODS_ROOT/SwiftLint/swiftlint\n$PODS_ROOT/SwiftLint/swiftlint autocorrect\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPods/SwiftLint/swiftlint\nPods/SwiftLint/swiftlint autocorrect\n";
 		};
 		5DBA198D423076DF64A6D81D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -350,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */,
+				38533B64233BF6C9002108C4 /* Colors.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,
 				3899F3BE2309CA470051BA08 /* Yalantis_School.xcdatamodeld in Sources */,

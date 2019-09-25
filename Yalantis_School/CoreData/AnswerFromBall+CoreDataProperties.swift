@@ -17,5 +17,4 @@ extension AnswerFromBall {
     }
 
     @NSManaged public var answer: String?
-
 }

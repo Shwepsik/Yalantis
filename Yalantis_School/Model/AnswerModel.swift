@@ -24,10 +24,8 @@ struct AnswerModel {
 extension AnswerModel: Decodable {
 
     init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: RootKey.self)
         let answerContainer = try container.nestedContainer(keyedBy: AnswerKey.self, forKey: .magic)
         self.answer = try answerContainer.decode(type(of: self.answer), forKey: .answer)
-
     }
 }

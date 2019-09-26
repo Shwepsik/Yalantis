@@ -10,15 +10,12 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
-    
-    func showAlert(title : String, messgae : String, style : UIAlertController.Style) {
-        
+
+    func showAlert(title: String, messgae: String, style: UIAlertController.Style) {
         let alert = UIAlertController(title: title, message: messgae, preferredStyle: style)
-        let action = UIAlertAction(title: "OK", style: .default) { (action) in
+        let action = UIAlertAction(title: L10n.ok, style: .default) { (_) in
         }
         alert.addAction(action)
-        self.present(alert,animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }
-

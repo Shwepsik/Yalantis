@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension AnswerFromBall {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<AnswerFromBall> {
@@ -18,5 +17,4 @@ extension AnswerFromBall {
     }
 
     @NSManaged public var answer: String?
-
 }

@@ -1,16 +1,25 @@
 PODS:
   - Alamofire (4.8.2)
+  - SwiftGen (6.1.0)
+  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - SwiftGen (~> 6.0)
+  - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
+  trunk:
+    - SwiftGen
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: f8176b5dbb496f48938a61258bbe0afe66d7647a
+PODFILE CHECKSUM: 034758b562912d5886b0e024b8291e121b85eb03
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.0.beta.2

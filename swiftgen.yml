@@ -1,0 +1,16 @@
+strings:
+  inputs: Yalantis_School
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: Yalantis_School/SwiftGen/strings.swift
+xcassets:
+  inputs: Yalantis_School/Assets.xcassets
+  outputs:
+    - templateName: swift4
+      output: Yalantis_School/SwiftGen/assets-images.swift
+colors:
+  inputs: Yalantis_School/Ressources/Colors.txt
+  outputs:
+    - templateName: swift4
+      output: Yalantis_School/SwiftGen/Colors.swift

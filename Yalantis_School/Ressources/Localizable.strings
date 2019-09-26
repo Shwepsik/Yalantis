@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Yalantis_School
+
+  Created by Valerii on 9/23/19.
+  Copyright © 2019 Valerii. All rights reserved.
+*/
+
+
+// Main View Controller
+"answer_label_text" = "Shake me to get the answer";
+
+// Settings View Controller
+"description_label_text" = "Here you can create your own answers";
+
+// Background View Controller
+"navigation_title" = "Magic Ball";
+
+// Alert
+"add_some_text" = "Please add some text";
+"perfect" = "Perfect";
+"ok" = "OK";'

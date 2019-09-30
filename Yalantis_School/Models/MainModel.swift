@@ -10,8 +10,8 @@ import Foundation
 
 class MainModel {
 
-    let dataFetcher: DataFetcher
-    let persistenceService: PersistenceService
+   private let dataFetcher: DataFetcher
+   private let persistenceService: PersistenceService
 
     init(dataFetcher: DataFetcher, persistenceService: PersistenceService) {
         self.dataFetcher = dataFetcher
@@ -31,7 +31,7 @@ class MainModel {
         }
     }
 
-    func uppercasseString(answer: String) -> String {
+   private func uppercasseString(answer: String) -> String {
         let answer = answer.uppercased()
         return answer
     }

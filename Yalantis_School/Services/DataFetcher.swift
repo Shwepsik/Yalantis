@@ -36,7 +36,7 @@ class DataFetcher: DataFetch {
         }
     }
 
-    func jsonToNSData(json: Any) -> Data? {
+   private func jsonToNSData(json: Any) -> Data? {
         do {
             return try JSONSerialization.data(withJSONObject: json,
                                               options: JSONSerialization.WritingOptions.prettyPrinted)

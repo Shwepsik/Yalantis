@@ -10,7 +10,7 @@ import Foundation
 
 class MainViewModel {
 
-    let mainModel: MainModel
+   private let mainModel: MainModel
 
     init(mainModel: MainModel) {
         self.mainModel = mainModel

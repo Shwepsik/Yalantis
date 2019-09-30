@@ -9,11 +9,13 @@
 import Foundation
 import CoreData
 
-final class PersistenceService {
+protocol DataStore {
+    func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]
 
-    private init() {}
+    func save()
+}
 
-    static let shared = PersistenceService()
+class PersistenceService: DataStore {
 
     // MARK: - Core Data stack
 

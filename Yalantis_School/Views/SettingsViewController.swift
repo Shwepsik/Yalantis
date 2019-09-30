@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsViewController: BackgroundViewController {
 
+    var mainViewModel: MainViewModel!
     @IBOutlet weak var answerTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
@@ -24,18 +25,17 @@ class SettingsViewController: BackgroundViewController {
     }
 
     @IBAction func addPhrase(_ sender: Any) {
-        saveSome()
+        savePhrase()
     }
 
-    func saveSome() {
+    func savePhrase() {
         if answerTextField.text!.isEmpty {
             self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
         } else {
-            let answersPack = AnswerFromBall(context: PersistenceService.shared.context)
-            answersPack.answer = answerTextField.text!
-            PersistenceService.shared.save()
-            self.answerTextField.text = ""
-            self.showAlert(title: L10n.perfect, messgae: "", style: .alert)
+            mainViewModel.savePharse(answerTextFieldText: answerTextField.text!) {
+                self.answerTextField.text = ""
+                self.showAlert(title: L10n.perfect, messgae: "", style: .alert)
+            }
         }
     }
 }

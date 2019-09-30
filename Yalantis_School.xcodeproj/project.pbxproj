@@ -20,12 +20,15 @@
 		3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */; };
 		3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CD2309CAD10051BA08 /* AlertController.swift */; };
 		3899F3D02309CADA0051BA08 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */; };
-		3899F3D32309CB090051BA08 /* RequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D22309CB090051BA08 /* RequestController.swift */; };
 		3899F3D62309CB7E0051BA08 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */; };
 		3899F3D82309CB8C0051BA08 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D72309CB8C0051BA08 /* BackgroundViewController.swift */; };
 		3899F3DB2309CBFE0051BA08 /* AnswerFromBall+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D92309CBFE0051BA08 /* AnswerFromBall+CoreDataClass.swift */; };
 		3899F3DC2309CBFE0051BA08 /* AnswerFromBall+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3DA2309CBFE0051BA08 /* AnswerFromBall+CoreDataProperties.swift */; };
 		3899F3E12309CC330051BA08 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3E02309CC330051BA08 /* AnswerModel.swift */; };
+		38C397832341376E00AAB042 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C397822341376E00AAB042 /* RequestService.swift */; };
+		38C3978523413B6300AAB042 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3978423413B6300AAB042 /* DataFetcher.swift */; };
+		38C3978823413D8600AAB042 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3978723413D8600AAB042 /* MainModel.swift */; };
+		38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3978923413E5000AAB042 /* MainViewModel.swift */; };
 		38D7684F23383BDD00BB7CA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38D7684E23383BDD00BB7CA9 /* Localizable.strings */; };
 		38D768522338413F00BB7CA9 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 38D768512338413F00BB7CA9 /* swiftgen.yml */; };
 		4E6475C6347D54AEEC85419C /* Pods_Yalantis_School.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31ACDF95D6B7F138458C945 /* Pods_Yalantis_School.framework */; };
@@ -47,12 +50,15 @@
 		3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		3899F3CD2309CAD10051BA08 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
-		3899F3D22309CB090051BA08 /* RequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestController.swift; sourceTree = "<group>"; };
 		3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3899F3D72309CB8C0051BA08 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
 		3899F3D92309CBFE0051BA08 /* AnswerFromBall+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswerFromBall+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3899F3DA2309CBFE0051BA08 /* AnswerFromBall+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswerFromBall+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3899F3E02309CC330051BA08 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		38C397822341376E00AAB042 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		38C3978423413B6300AAB042 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		38C3978723413D8600AAB042 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		38C3978923413E5000AAB042 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		38D7684E23383BDD00BB7CA9 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		38D768512338413F00BB7CA9 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		40192F84C7EE2F7D347547E3 /* Pods-Yalantis_School.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yalantis_School.debug.xcconfig"; path = "Target Support Files/Pods-Yalantis_School/Pods-Yalantis_School.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,12 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				3899F3B52309CA470051BA08 /* AppDelegate.swift */,
-				3899F3E22309D30D0051BA08 /* PersistenceService */,
-				3899F3D12309CAF90051BA08 /* RequestController */,
+				3899F3D12309CAF90051BA08 /* Services */,
 				3899F3CC2309CA950051BA08 /* Extensions */,
+				38C3978623413CCF00AAB042 /* Models */,
 				3899F3D42309CB680051BA08 /* Views */,
 				3899F3DD2309CC060051BA08 /* CoreData */,
-				3899F3DF2309CC250051BA08 /* Model */,
+				3899F3DF2309CC250051BA08 /* Data Transfer Object */,
 				38D7685E2338FD6A00BB7CA9 /* SwiftGen */,
 				38D7684B2338035B00BB7CA9 /* Ressources */,
 				3899F3B92309CA470051BA08 /* Main.storyboard */,
@@ -119,12 +125,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3899F3D12309CAF90051BA08 /* RequestController */ = {
+		3899F3D12309CAF90051BA08 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3899F3D22309CB090051BA08 /* RequestController.swift */,
+				38C397822341376E00AAB042 /* RequestService.swift */,
+				38C3978423413B6300AAB042 /* DataFetcher.swift */,
+				3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */,
 			);
-			path = RequestController;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		3899F3D42309CB680051BA08 /* Views */ = {
@@ -146,20 +154,21 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		3899F3DF2309CC250051BA08 /* Model */ = {
+		3899F3DF2309CC250051BA08 /* Data Transfer Object */ = {
 			isa = PBXGroup;
 			children = (
 				3899F3E02309CC330051BA08 /* AnswerModel.swift */,
 			);
-			path = Model;
+			path = "Data Transfer Object";
 			sourceTree = "<group>";
 		};
-		3899F3E22309D30D0051BA08 /* PersistenceService */ = {
+		38C3978623413CCF00AAB042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */,
+				38C3978723413D8600AAB042 /* MainModel.swift */,
+				38C3978923413E5000AAB042 /* MainViewModel.swift */,
 			);
-			path = PersistenceService;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		38D7684B2338035B00BB7CA9 /* Ressources */ = {
@@ -357,17 +366,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */,
+				38C3978523413B6300AAB042 /* DataFetcher.swift in Sources */,
 				38533B64233BF6C9002108C4 /* Colors.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,
 				3899F3BE2309CA470051BA08 /* Yalantis_School.xcdatamodeld in Sources */,
-				3899F3D32309CB090051BA08 /* RequestController.swift in Sources */,
 				3899F3DC2309CBFE0051BA08 /* AnswerFromBall+CoreDataProperties.swift in Sources */,
 				3899F3D02309CADA0051BA08 /* HideKeyboard.swift in Sources */,
 				38533A252338FE86002108C4 /* strings.swift in Sources */,
+				38C397832341376E00AAB042 /* RequestService.swift in Sources */,
 				38533A242338FE86002108C4 /* assets-images.swift in Sources */,
 				3899F3D82309CB8C0051BA08 /* BackgroundViewController.swift in Sources */,
+				38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */,
 				3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */,
+				38C3978823413D8600AAB042 /* MainModel.swift in Sources */,
 				3899F3E12309CC330051BA08 /* AnswerModel.swift in Sources */,
 				3899F3DB2309CBFE0051BA08 /* AnswerFromBall+CoreDataClass.swift in Sources */,
 				3899F3D62309CB7E0051BA08 /* SettingsViewController.swift in Sources */,

@@ -9,11 +9,12 @@
 import Foundation
 import CoreData
 
-final class PersistenceService {
+protocol PersistenceStore {
+    func fetch() -> [AnswerModel]
+    func save(answer: AnswerModel)
+}
 
-    private init() {}
-
-    static let shared = PersistenceService()
+class PersistenceService: PersistenceStore {
 
     // MARK: - Core Data stack
 
@@ -43,17 +44,20 @@ final class PersistenceService {
         }
     }
 
-    func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T] {
-        let entityName = String(describing: objectType)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-
+    func fetch() -> [AnswerModel] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
         do {
-            let fetchedObjects = try context.fetch(fetchRequest) as? [T]
-            return fetchedObjects ?? [T]()
-        } catch {
+            let fetchedObjects = try context.fetch(fetchRequest) as? [ManagedAnswer]
+            return fetchedObjects?.map { $0.toAnswerModel(string: $0.answer ?? "1") } ?? [AnswerModel]()
+            } catch {
             print(error)
-            return [T]()
+            return [AnswerModel]()
         }
     }
 
+    func save(answer: AnswerModel) {
+          let modelObject = ManagedAnswer(context: context)
+          modelObject.answer = answer.answer
+          save()
+    }
 }

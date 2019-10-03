@@ -1,5 +1,5 @@
 //
-//  AnswerFromBall+CoreDataClass.swift
+//  ManagedAnswer+CoreDataClass.swift
 //  Yalantis_School
 //
 //  Created by Valerii on 8/18/19.
@@ -10,6 +10,6 @@
 import Foundation
 import CoreData
 
-public class AnswerFromBall: NSManagedObject {
+public class ManagedAnswer: NSManagedObject {
 
 }

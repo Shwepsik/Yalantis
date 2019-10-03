@@ -31,6 +31,6 @@ class MainViewModel {
 
     func savePharse(presentableAnswer: PresentableAnswer) {
         let answerModel = presentableAnswer.toAnswerModel(string: presentableAnswer.answer)
-        mainModel.savePhrase(answerModel)
+        mainModel.save(answerModel)
     }
 }

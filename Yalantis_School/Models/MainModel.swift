@@ -40,12 +40,12 @@ class MainModel {
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
                 let answer = AnswerModel(answer: phrase)
-                persistenceService.saveContext(answer: answer)
+                persistenceService.save(answer: answer)
             }
         }
     }
 
-    func savePhrase(_ answerModel: AnswerModel) {
-        persistenceService.saveContext(answer: answerModel)
+    func save(_ answerModel: AnswerModel) {
+        persistenceService.save(answer: answerModel)
     }
 }

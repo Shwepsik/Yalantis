@@ -11,7 +11,7 @@ import CoreData
 
 protocol PersistenceStore {
     func fetch() -> [AnswerModel]
-    func saveContext(answer: AnswerModel)
+    func save(answer: AnswerModel)
 }
 
 class PersistenceService: PersistenceStore {
@@ -55,7 +55,7 @@ class PersistenceService: PersistenceStore {
         }
     }
 
-    func saveContext(answer: AnswerModel) {
+    func save(answer: AnswerModel) {
           let modelObject = ManagedAnswer(context: context)
           modelObject.answer = answer.answer
           save()

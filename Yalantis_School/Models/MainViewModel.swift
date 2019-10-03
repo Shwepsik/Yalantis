@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias PresentableAnswerResponse = (_ result: PresentableAnswer?) -> Void
+
 class MainViewModel {
 
    private let mainModel: MainModel
@@ -20,14 +22,15 @@ class MainViewModel {
         mainModel.createPhrase()
     }
 
-    func getAnswer(question: String, response: @escaping(Response)) {
+    func getAnswer(question: String, response: @escaping(PresentableAnswerResponse)) {
         mainModel.getAnswer(question) { (answer) in
-            response(answer)
+            let presentableAnswer = answer?.toPresentableAnswer(string: answer?.answer.uppercased() ?? "")
+            response(presentableAnswer)
         }
     }
 
-    func savePharse(answerTextFieldText: String, response: () -> Void) {
-        mainModel.savePhrase(answerTextFieldText)
-        response()
+    func savePharse(presentableAnswer: PresentableAnswer) {
+        let answerModel = presentableAnswer.toAnswerModel(string: presentableAnswer.answer)
+        mainModel.savePhrase(answerModel)
     }
 }

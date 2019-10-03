@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let persistenceService = PersistenceService()
+    private let persistenceService = PersistenceService()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,12 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainModel = MainModel(dataFetcher: dataFetcher, persistenceService: persistenceService)
         let mainViewModel = MainViewModel(mainModel: mainModel)
 
-        let mainViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "MainViewController") as? MainViewController
+        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
+        mainViewController.mainViewModel = mainViewModel
 
-        mainViewController?.mainViewModel = mainViewModel
-
-        self.window?.rootViewController = UINavigationController(rootViewController: mainViewController!)
+        self.window?.rootViewController = UINavigationController(rootViewController: mainViewController)
 
         return true
     }

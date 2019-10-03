@@ -9,24 +9,26 @@
 import Foundation
 import Alamofire
 
-protocol DataFetch {
-    func tryLoadAnswer(_ path: String, _ responseBlock: @escaping (AnswerResponse))
+typealias AnswerModelResponseBlock = (_ result: AnswerModel?, _ error: Error?) -> Void
+
+protocol DataFetching {
+    func tryLoadAnswer(_ path: String, _ responseBlock: @escaping (AnswerModelResponseBlock))
 }
 
-class DataFetcher: DataFetch {
+class DataFetcher: DataFetching {
 
-    let requestService: RequestService
+    let requestService: NetwordDataProvider
 
-    init(requestService: RequestService) {
+    init(requestService: NetwordDataProvider) {
         self.requestService = requestService
     }
 
-    func tryLoadAnswer(_ question: String, _ responseBlock: @escaping (AnswerResponse)) {
+    func tryLoadAnswer(_ question: String, _ responseBlock: @escaping (AnswerModelResponseBlock)) {
         requestService.tryLoadInfo(method: .get, params: nil, headers: nil, path: question) { (response, error) in
             if let json = response {
                 do {
                     let model = try JSONDecoder().decode(AnswerModel.self, from: self.jsonToNSData(json: json)!)
-                    responseBlock(model.answer, error)
+                    responseBlock(model, error)
                 } catch {
                     responseBlock(nil, error)
                 }

@@ -32,10 +32,10 @@ class SettingsViewController: BackgroundViewController {
         if answerTextField.text!.isEmpty {
             self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
         } else {
-            mainViewModel.savePharse(answerTextFieldText: answerTextField.text!) {
-                self.answerTextField.text = ""
-                self.showAlert(title: L10n.perfect, messgae: "", style: .alert)
-            }
+            let answer = PresentableAnswer(answer: answerTextField.text!)
+            mainViewModel.savePharse(presentableAnswer: answer)
+            self.answerTextField.text = ""
+            self.showAlert(title: L10n.perfect, messgae: "", style: .alert)
         }
     }
 }

@@ -37,10 +37,9 @@ class MainViewController: BackgroundViewController {
     }
 
     @objc func pushSettingsController() {
-        let settingsViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController
-        settingsViewController?.mainViewModel = mainViewModel
-        self.navigationController?.pushViewController(settingsViewController!, animated: true)
+        let settingsViewController = StoryboardScene.Main.settingsViewController.instantiate()
+        settingsViewController.mainViewModel = mainViewModel
+        self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
 
     override var canBecomeFirstResponder: Bool {
@@ -52,7 +51,7 @@ class MainViewController: BackgroundViewController {
             if questionTextField.text != "" {
                 mainViewModel.getAnswer(question: questionTextField.text!) { (answer) in
                     self.questionTextField.text = ""
-                    self.answerLabel.text = answer as? String
+                    self.answerLabel.text = answer?.answer
                 }
             } else {
                 self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)

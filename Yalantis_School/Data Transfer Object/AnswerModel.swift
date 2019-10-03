@@ -28,4 +28,8 @@ extension AnswerModel: Decodable {
         let answerContainer = try container.nestedContainer(keyedBy: AnswerKey.self, forKey: .magic)
         self.answer = try answerContainer.decode(type(of: self.answer), forKey: .answer)
     }
+
+    func toPresentableAnswer(string: String) -> PresentableAnswer {
+        return PresentableAnswer(answer: string)
+    }
 }

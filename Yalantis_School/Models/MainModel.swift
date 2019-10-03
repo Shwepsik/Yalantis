@@ -8,50 +8,44 @@
 
 import Foundation
 
+typealias AnswerModelResponse = (_ result: AnswerModel?) -> Void
+
 class MainModel {
 
-   private let dataFetcher: DataFetcher
-   private let persistenceService: PersistenceService
+   private let dataFetcher: DataFetching
+   private let persistenceService: PersistenceStore
 
-    init(dataFetcher: DataFetcher, persistenceService: PersistenceService) {
+    init(dataFetcher: DataFetching, persistenceService: PersistenceStore) {
         self.dataFetcher = dataFetcher
         self.persistenceService = persistenceService
     }
 
-    func getAnswer(_ path: String, _ response: @escaping (Response)) {
+    func getAnswer(_ path: String, _ response: @escaping (AnswerModelResponse)) {
         dataFetcher.tryLoadAnswer(path) { (answer, error) in
             if error != nil {
-                let answers = self.persistenceService.fetch(AnswerFromBall.self)
-                let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))].answer
+                let answers = self.persistenceService.fetch()
+                let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
                 response(offlineAnswer)
             } else {
-                let uppercaseString = self.uppercasseString(answer: answer!)
-                response(uppercaseString)
+                response(answer)
             }
         }
     }
 
-   private func uppercasseString(answer: String) -> String {
-        let answer = answer.uppercased()
-        return answer
-    }
-
     func createPhrase() {
-        let answersPack = persistenceService.fetch(AnswerFromBall.self)
+        let answersPack = persistenceService.fetch()
         let phrases = ["Try to think about it tomorrow", "Great idea!", "Burn them all",
                        "It’s better to wait a little", "Ask your heart"]
 
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
-                let answers = AnswerFromBall(context: persistenceService.context)
-                answers.answer = uppercasseString(answer: phrase)
+                let answer = AnswerModel(answer: phrase)
+                persistenceService.saveContext(answer: answer)
             }
         }
     }
 
-    func savePhrase(_ answerTextField: String) {
-        let answersPack = AnswerFromBall(context: persistenceService.context)
-        answersPack.answer = uppercasseString(answer: answerTextField)
-        persistenceService.save()
+    func savePhrase(_ answerModel: AnswerModel) {
+        persistenceService.saveContext(answer: answerModel)
     }
 }

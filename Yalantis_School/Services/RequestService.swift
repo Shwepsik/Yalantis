@@ -12,8 +12,6 @@ import Alamofire
 typealias JSON = [String: AnyObject]
 typealias ResponseBlock = (_ result: Any?, _ error: Error?)
     -> Void
-typealias AnswerResponse = (_ result: String?, _ error: Error?) -> Void
-typealias Response = (_ result: Any?) -> Void
 
 protocol NetwordDataProvider {
     func tryLoadInfo(method: HTTPMethod,
@@ -24,7 +22,7 @@ protocol NetwordDataProvider {
 }
 
 class RequestService: NetwordDataProvider {
-    let baseUrl: String = "https://8ball.delegator.com/magic/JSON/"
+  private let baseUrl: String = "https://8ball.delegator.com/magic/JSON/"
 
     func tryLoadInfo(method: HTTPMethod,
                      params: Parameters?,

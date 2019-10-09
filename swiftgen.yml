@@ -21,3 +21,8 @@ ib:
       output: Yalantis_School/SwiftGen/Storyboard Scenes.swift
     - templateName: segues-swift4
       output: Yalantis_School/SwiftGen/Storyboard Segues.swift
+fonts:
+  inputs: Yalantis_School/Ressources/Fonts
+  outputs:
+    - templateName: swift4
+      output: Yalantis_School/SwiftGen/Fonts.swift

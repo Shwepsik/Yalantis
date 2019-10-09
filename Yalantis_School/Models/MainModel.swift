@@ -14,10 +14,12 @@ class MainModel {
 
    private let dataFetcher: DataFetching
    private let persistenceService: PersistenceStore
+   private let keyChainService: SecureStorage
 
-    init(dataFetcher: DataFetching, persistenceService: PersistenceStore) {
+    init(dataFetcher: DataFetching, persistenceService: PersistenceStore, keyChainService: SecureStorage) {
         self.dataFetcher = dataFetcher
         self.persistenceService = persistenceService
+        self.keyChainService = keyChainService
     }
 
     func getAnswer(_ path: String, _ response: @escaping (AnswerModelResponse)) {
@@ -30,6 +32,14 @@ class MainModel {
                 response(answer)
             }
         }
+    }
+
+    func addShakeCount() {
+        keyChainService.addShakeCount()
+    }
+
+    func getShake(response: @escaping (ShakeCountModelResponse)) {
+        keyChainService.getShakeCount(response)
     }
 
     func createPhrase() {

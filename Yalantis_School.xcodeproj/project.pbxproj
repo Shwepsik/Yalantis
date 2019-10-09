@@ -10,10 +10,17 @@
 		38277FB52345364B007BE803 /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB32345364B007BE803 /* Storyboard Segues.swift */; };
 		38277FB62345364B007BE803 /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB42345364B007BE803 /* Storyboard Scenes.swift */; };
 		38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB923454FF9007BE803 /* PresentableAnswer.swift */; };
+		38315072234AABEA00BFB368 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38315071234AABEA00BFB368 /* KeyChainService.swift */; };
+		3831507D234D299F00BFB368 /* ShakeCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831507C234D299F00BFB368 /* ShakeCountModel.swift */; };
+		3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */; };
 		38533A242338FE86002108C4 /* assets-images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A222338FE86002108C4 /* assets-images.swift */; };
 		38533A252338FE86002108C4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A232338FE86002108C4 /* strings.swift */; };
 		38533B62233BF5DC002108C4 /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38533B61233BF5DC002108C4 /* Colors.txt */; };
 		38533B64233BF6C9002108C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533B63233BF6C9002108C4 /* Colors.swift */; };
+		388AB87B234D5DA5004E3A91 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */; };
+		388AB87C234D5DA7004E3A91 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */; };
+		388AB87D234D5DA9004E3A91 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */; };
+		388AB87F234D5E9D004E3A91 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AB87E234D5E9D004E3A91 /* Fonts.swift */; };
 		3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B52309CA470051BA08 /* AppDelegate.swift */; };
 		3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B72309CA470051BA08 /* MainViewController.swift */; };
 		3899F3BB2309CA470051BA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3899F3B92309CA470051BA08 /* Main.storyboard */; };
@@ -41,10 +48,17 @@
 		38277FB32345364B007BE803 /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Segues.swift"; sourceTree = "<group>"; };
 		38277FB42345364B007BE803 /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
 		38277FB923454FF9007BE803 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
+		38315071234AABEA00BFB368 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
+		3831507C234D299F00BFB368 /* ShakeCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeCountModel.swift; sourceTree = "<group>"; };
+		3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableShakeCount.swift; sourceTree = "<group>"; };
 		38533A222338FE86002108C4 /* assets-images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "assets-images.swift"; sourceTree = "<group>"; };
 		38533A232338FE86002108C4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		38533B61233BF5DC002108C4 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		38533B63233BF6C9002108C4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		388AB87E234D5E9D004E3A91 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3899F3B22309CA470051BA08 /* Yalantis_School.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yalantis_School.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3899F3B52309CA470051BA08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3899F3B72309CA470051BA08 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +98,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		388AB877234D5D51004E3A91 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */,
+				388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */,
+				388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3899F3A92309CA470051BA08 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +161,7 @@
 				38C397822341376E00AAB042 /* RequestService.swift */,
 				38C3978423413B6300AAB042 /* DataFetcher.swift */,
 				3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */,
+				38315071234AABEA00BFB368 /* KeyChainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -164,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				3899F3E02309CC330051BA08 /* AnswerModel.swift */,
+				3831507C234D299F00BFB368 /* ShakeCountModel.swift */,
+				3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */,
 				38277FB923454FF9007BE803 /* PresentableAnswer.swift */,
 			);
 			path = "Data Transfer Object";
@@ -181,6 +208,7 @@
 		38D7684B2338035B00BB7CA9 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				388AB877234D5D51004E3A91 /* Fonts */,
 				3899F3BC2309CA470051BA08 /* Yalantis_School.xcdatamodeld */,
 				38D7684E23383BDD00BB7CA9 /* Localizable.strings */,
 				38D768512338413F00BB7CA9 /* swiftgen.yml */,
@@ -197,6 +225,7 @@
 				38533A222338FE86002108C4 /* assets-images.swift */,
 				38533A232338FE86002108C4 /* strings.swift */,
 				38533B63233BF6C9002108C4 /* Colors.swift */,
+				388AB87E234D5E9D004E3A91 /* Fonts.swift */,
 			);
 			path = SwiftGen;
 			sourceTree = "<group>";
@@ -280,11 +309,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				388AB87C234D5DA7004E3A91 /* SF-Pro-Display-Medium.otf in Resources */,
 				3899F3C32309CA480051BA08 /* LaunchScreen.storyboard in Resources */,
 				38D768522338413F00BB7CA9 /* swiftgen.yml in Resources */,
 				38533B62233BF5DC002108C4 /* Colors.txt in Resources */,
+				388AB87B234D5DA5004E3A91 /* SF-Pro-Display-Semibold.otf in Resources */,
 				38D7684F23383BDD00BB7CA9 /* Localizable.strings in Resources */,
 				3899F3C02309CA480051BA08 /* Assets.xcassets in Resources */,
+				388AB87D234D5DA9004E3A91 /* SF-Pro-Display-Regular.otf in Resources */,
 				3899F3BB2309CA470051BA08 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,14 +412,18 @@
 				38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,
+				388AB87F234D5E9D004E3A91 /* Fonts.swift in Sources */,
 				38277FB52345364B007BE803 /* Storyboard Segues.swift in Sources */,
+				3831507D234D299F00BFB368 /* ShakeCountModel.swift in Sources */,
 				3899F3BE2309CA470051BA08 /* Yalantis_School.xcdatamodeld in Sources */,
 				3899F3DC2309CBFE0051BA08 /* ManagedAnswer+CoreDataProperties.swift in Sources */,
 				3899F3D02309CADA0051BA08 /* HideKeyboard.swift in Sources */,
 				38533A252338FE86002108C4 /* strings.swift in Sources */,
+				38315072234AABEA00BFB368 /* KeyChainService.swift in Sources */,
 				38C397832341376E00AAB042 /* RequestService.swift in Sources */,
 				38533A242338FE86002108C4 /* assets-images.swift in Sources */,
 				3899F3D82309CB8C0051BA08 /* BackgroundViewController.swift in Sources */,
+				3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */,
 				38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */,
 				3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */,
 				38C3978823413D8600AAB042 /* MainModel.swift in Sources */,

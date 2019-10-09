@@ -7,23 +7,35 @@
 //
 
 import UIKit
+import SnapKit
 
 class BackgroundViewController: UIViewController {
 
+    let backgroundImage = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = Asset.sky.image
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
-        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         navigationController?.navigationBar.barTintColor = ColorName.navigationBarTintColor.color
         navigationItem.title = L10n.navigationTitle
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: ColorName.navigationBarTitleColor.color]
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addConstraintsToBackgroundImage()
+    }
+
+    func addConstraintsToBackgroundImage() {
+        backgroundImage.snp.makeConstraints { (make) in
+            make.leading.equalTo(self.view)
+            make.trailing.equalTo(self.view)
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+        }
     }
 }

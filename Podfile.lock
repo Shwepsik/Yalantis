@@ -1,25 +1,33 @@
 PODS:
   - Alamofire (4.8.2)
+  - SnapKit (5.0.1)
   - SwiftGen (6.1.0)
+  - SwiftKeychainWrapper (3.4.0)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - SnapKit (~> 5.0.0)
   - SwiftGen (~> 6.0)
+  - SwiftKeychainWrapper (~> 3.4)
   - SwiftLint (~> 0.35)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
   trunk:
+    - SnapKit
     - SwiftGen
+    - SwiftKeychainWrapper
     - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 68c26b568d7099d08414976f62e4057837425218
+PODFILE CHECKSUM: 9c1a679b8ab91363b517363b77a80725c44e4707
 
 COCOAPODS: 1.8.0.beta.2

@@ -18,5 +18,4 @@ extension PresentableAnswer {
     func toAnswerModel(string: String) -> AnswerModel {
         return AnswerModel(answer: string)
     }
-
 }

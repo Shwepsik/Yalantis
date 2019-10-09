@@ -17,12 +17,18 @@ internal enum L10n {
   internal static let answerLabelText = L10n.tr("Localizable", "answer_label_text")
   /// Here you can create your own answers
   internal static let descriptionLabelText = L10n.tr("Localizable", "description_label_text")
+  /// Your Question
+  internal static let mainTextFieldPlaceholder = L10n.tr("Localizable", "main_textField_placeholder")
   /// Magic Ball
   internal static let navigationTitle = L10n.tr("Localizable", "navigation_title")
   /// OK
   internal static let ok = L10n.tr("Localizable", "ok")
   /// Perfect
   internal static let perfect = L10n.tr("Localizable", "perfect")
+  /// Save
+  internal static let saveButton = L10n.tr("Localizable", "save_button")
+  /// Your Answer
+  internal static let settingsTextFieldPlaceholder = L10n.tr("Localizable", "settings_textField_placeholder")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name

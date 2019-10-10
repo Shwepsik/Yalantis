@@ -17,15 +17,17 @@ protocol SecureStorage {
 }
 
 class KeyChainService: SecureStorage {
+    private let shakeCountKey = "shakeCount"
+    private let keyChainWrapper = KeychainWrapper.standard
 
     func addShakeCount() {
-        let getShakeCounts: Int? = KeychainWrapper.standard.integer(forKey: "shakeCount")
+        let getShakeCounts: Int? = keyChainWrapper.integer(forKey: shakeCountKey)
         let newShakeCounts = (getShakeCounts ?? 0) + 1
-        KeychainWrapper.standard.set(newShakeCounts, forKey: "shakeCount")
+        keyChainWrapper.set(newShakeCounts, forKey: shakeCountKey)
     }
 
     func getShakeCount(_ responseBlock: @escaping (ShakeCountModelResponse)) {
-        let getShakeCounts: Int? = KeychainWrapper.standard.integer(forKey: "shakeCount")
+        let getShakeCounts: Int? = keyChainWrapper.integer(forKey: shakeCountKey)
         let shakeCountModel = ShakeCountModel(shakeCount: getShakeCounts ?? 0)
         responseBlock(shakeCountModel)
     }

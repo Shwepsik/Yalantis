@@ -13,26 +13,22 @@ class MainViewController: BackgroundViewController {
 
     var mainViewModel: MainViewModel!
 
-    let questionTextField = UITextField()
-    let answerLabel = UILabel()
-    let shakeCountsLabel = UILabel()
+    private let questionTextField = UITextField()
+    private let answerLabel = UILabel()
+    private let shakeCountsLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getShakeCounts()
         self.addOutlets()
+        self.addConstraints()
         self.addBarButtonItem()
         self.mainViewModel.createPhrase()
         self.tapToHide()
         self.becomeFirstResponder()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.addConstraints()
-    }
-
-    func addBarButtonItem() {
+    private func addBarButtonItem() {
         let button = UIBarButtonItem(image: Asset.settings.image,
                                      style: .plain,
                                      target: self,
@@ -50,7 +46,7 @@ class MainViewController: BackgroundViewController {
         return true
     }
 
-     func addConstraints() {
+    private func addConstraints() {
         questionTextField.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view)
@@ -73,32 +69,27 @@ class MainViewController: BackgroundViewController {
         }
     }
 
-    func addOutlets() {
-        //questionTextField
+    private func addOutlets() {
         questionTextField.placeholder = L10n.mainTextFieldPlaceholder
         questionTextField.textAlignment = .center
         questionTextField.borderStyle = .roundedRect
         questionTextField.font = FontFamily.SFProDisplay.regular.font(size: 15)
-        self.view.addSubview(questionTextField)
-        questionTextField.translatesAutoresizingMaskIntoConstraints = false
-        //answerLabel
+        view.addSubview(questionTextField)
+
         answerLabel.text = L10n.answerLabelText
         answerLabel.textColor = .white
         answerLabel.textAlignment = .center
         answerLabel.font = FontFamily.SFProDisplay.regular.font(size: 17)
-        self.view.addSubview(answerLabel)
-        answerLabel.translatesAutoresizingMaskIntoConstraints = false
-        //shakeCountsLabel
+        view.addSubview(answerLabel)
+
         shakeCountsLabel.backgroundColor = ColorName.navigationBarTitleColor.color
         shakeCountsLabel.textColor = .white
         shakeCountsLabel.textAlignment = .center
         shakeCountsLabel.font = FontFamily.SFProDisplay.regular.font(size: 17)
-        self.view.addSubview(shakeCountsLabel)
-        shakeCountsLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        view.addSubview(shakeCountsLabel)
     }
 
-    func getShakeCounts() {
+   private func getShakeCounts() {
         mainViewModel.getShakeCount { (shake) in
             self.shakeCountsLabel.text = shake.shakeCount
         }

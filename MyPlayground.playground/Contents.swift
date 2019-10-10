@@ -5,35 +5,35 @@ import PlaygroundSupport
 
 var counter = 0
 
-var dwi: DispatchWorkItem?
-let myDqMain = DispatchQueue.main
-let myDqBackgroung = DispatchQueue.global(qos: .background)
+var dispatchWorkItem: DispatchWorkItem?
+let myDispatchQueueMain = DispatchQueue.main
+let myDispatchQueueBackgroung = DispatchQueue.global(qos: .background)
 
-dwi = DispatchWorkItem {
+dispatchWorkItem = DispatchWorkItem {
     print("start DispatchWorkItem")
     while true {
         counter += 1
         print(counter)
-        if (dwi!.isCancelled) {
+        if (dispatchWorkItem!.isCancelled) {
             print("end DispatchWorkItem")
             break
         }
     }
 }
 
-myDqBackgroung.async(execute: dwi!)
+myDispatchQueueBackgroung.async(execute: dispatchWorkItem!)
 
-myDqBackgroung.asyncAfter(deadline: .now() + 2 ) {
-    dwi?.cancel()
+myDispatchQueueBackgroung.asyncAfter(deadline: .now() + 2 ) {
+    dispatchWorkItem?.cancel()
 }
 
-myDqMain.async {
+myDispatchQueueMain.async {
     print("before deadlock in main")
-    myDqBackgroung.sync {
+    myDispatchQueueBackgroung.sync {
         print("before deadlock in main")
-        myDqMain.sync {
+        myDispatchQueueMain.sync {
             print("Произошел deadlock на main queue == this code will never be executed")
-            myDqBackgroung.async {
+            myDispatchQueueBackgroung.async {
                 print("Произошел deadlock на main queue == this code will never be executed")
             }
         }

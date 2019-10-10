@@ -39,10 +39,10 @@ class MainViewModel {
         mainModel.addShakeCount()
     }
 
-    func getShakeCount(response: @escaping(PresentableShakeResponse)) {
+    func getShakeCount(_ completion: @escaping(PresentableShakeResponse)) {
         mainModel.getShake { (shake) in
             let presentableShakeCount = shake.toPresentableShakeCount(intenger: shake.shakeCount)
-            response(presentableShakeCount)
+            completion(presentableShakeCount)
         }
     }
 }

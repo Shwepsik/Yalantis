@@ -11,47 +11,39 @@ import UIKit
 class SettingsViewController: BackgroundViewController {
 
     var mainViewModel: MainViewModel!
-    let answerTextField = UITextField()
-    let descriptionLabel = UILabel()
-    let saveButton = UIButton()
+    private let answerTextField = UITextField()
+    private let descriptionLabel = UILabel()
+    private let saveButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addOutlets()
+        self.addConstraints()
         self.tapToHide()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        addConstraints()
-    }
-
-    func addOutlets() {
-        //answerTextField
+    private func addOutlets() {
         answerTextField.placeholder = L10n.settingsTextFieldPlaceholder
         answerTextField.textAlignment = .center
         answerTextField.borderStyle = .roundedRect
         answerTextField.font = FontFamily.SFProDisplay.regular.font(size: 15)
-        self.view.addSubview(answerTextField)
-        answerTextField.translatesAutoresizingMaskIntoConstraints = false
-        //descriptionLabel
+        view.addSubview(answerTextField)
+
         descriptionLabel.text = L10n.descriptionLabelText
         descriptionLabel.textColor = .white
         descriptionLabel.textAlignment = .center
         descriptionLabel.font = FontFamily.SFProDisplay.regular.font(size: 17)
-        self.view.addSubview(descriptionLabel)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        //saveButton
+        view.addSubview(descriptionLabel)
+
         saveButton.setBackgroundImage(Asset.button.image, for: .normal)
         saveButton.setTitle(L10n.saveButton, for: .normal)
         saveButton.setTitleColor(ColorName.navigationBarTitleColor.color, for: .normal)
         saveButton.titleLabel?.font = FontFamily.SFProDisplay.medium.font(size: 17)
         saveButton.addTarget(self, action: #selector(savePhrase), for: .touchUpInside)
-        self.view.addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(saveButton)
     }
 
-    func addConstraints() {
+    private func addConstraints() {
         answerTextField.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view)

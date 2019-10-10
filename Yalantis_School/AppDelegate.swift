@@ -29,23 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        if let window = window {
-            let mainViewController = MainViewController()
-            window.rootViewController = UINavigationController(rootViewController: mainViewController)
-            window.makeKeyAndVisible()
-            mainViewController.mainViewModel = mainViewModel
-        }
-
-//        if let window = window {
-//            let viewController = MainViewController()//ViewController()
-//            self.window.rootViewController = Uinavi
-//            window.makeKeyAndVisible()
-//        }
-//
-//        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
-//        mainViewController.mainViewModel = mainViewModel
-
-     //   self.window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        let mainViewController = MainViewController()
+        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        mainViewController.mainViewModel = mainViewModel
+        window?.makeKeyAndVisible()
 
         return true
     }

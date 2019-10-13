@@ -16,7 +16,6 @@ protocol DataFetching {
 }
 
 class DataFetcher: DataFetching {
-
   private let requestService: NetwordDataProvider
 
     init(requestService: NetwordDataProvider) {

@@ -9,9 +9,13 @@
 
 // Main View Controller
 "answer_label_text" = "Shake me to get the answer";
+"main_textField_placeholder" = "Your Question";
 
 // Settings View Controller
 "description_label_text" = "Here you can create your own answers";
+"save_button" = "Save";
+"settings_textField_placeholder" = "Your Answer";
+
 
 // Background View Controller
 "navigation_title" = "Magic Ball";

@@ -21,13 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let requestService = RequestService()
         let dataFetcher = DataFetcher(requestService: requestService)
-        let mainModel = MainModel(dataFetcher: dataFetcher, persistenceService: persistenceService)
+        let keyChainService = KeyChainService()
+        let mainModel = MainModel(dataFetcher: dataFetcher,
+                                  persistenceService: persistenceService,
+                                  keyChainService: keyChainService)
         let mainViewModel = MainViewModel(mainModel: mainModel)
 
-        let mainViewController = StoryboardScene.Main.mainViewController.instantiate()
-        mainViewController.mainViewModel = mainViewModel
+        window = UIWindow(frame: UIScreen.main.bounds)
 
-        self.window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        let mainViewController = MainViewController()
+        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        mainViewController.mainViewModel = mainViewModel
+        window?.makeKeyAndVisible()
 
         return true
     }

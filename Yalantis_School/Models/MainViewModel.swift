@@ -27,7 +27,7 @@ class MainViewModel {
         mainModel.getAnswer(question) { (answer) in
             let presentableAnswer = answer?.toPresentableAnswer(
                 string: answer?.answer.uppercased() ?? "",
-                date: self.dateToString(date: answer!.timestamp)
+                date: self.dateToString(date: answer?.timestamp ?? Date())
             )
             response(presentableAnswer)
         }

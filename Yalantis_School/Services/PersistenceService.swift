@@ -91,7 +91,9 @@ class PersistenceService: PersistenceStore {
         backgroundMOC.performAndWait {
             do {
                 let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [ManagedAnswer]
-                results = fetchedObjects!.map { $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp!) }
+                results = fetchedObjects?.map {
+                    $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp ?? Date())
+                } ?? results
             } catch {
                 print(error)
             }
@@ -115,7 +117,8 @@ class PersistenceService: PersistenceStore {
         backgroundMOC.performAndWait {
             do {
                 let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [NSManagedObject]
-                backgroundMOC.delete((fetchedObjects?.first!)!)
+                guard let fetchedObject = fetchedObjects?.first else { return }
+                backgroundMOC.delete(fetchedObject)
                 save()
             } catch {
                 print(error)

@@ -55,7 +55,8 @@ class MainViewModel {
             completion(presentableShakeCount)
         }
     }
-
+    
+    // Не добавлял форматирование с presentableAnswer.timestamp (string) в Date т.к делаю Predicate по ответу и в данном случае мне не важно какой Date(), если так лучше не делать то добавлю
     func delete(presentableAnswer: PresentableAnswer) {
         let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer.lowercased(), date: Date())
         mainModel.delete(answerModel)

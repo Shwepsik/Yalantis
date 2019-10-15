@@ -43,6 +43,7 @@ class PersistenceService: PersistenceStore {
     // MARK: - Core Data Saving support
 
     func save() {
+        mainMOC.automaticallyMergesChangesFromParent = true
         if backgroundMOC.hasChanges {
             do {
                 try backgroundMOC.save()
@@ -54,8 +55,12 @@ class PersistenceService: PersistenceStore {
         }
     }
 /*  Лекция 7, слайд 36
-     Какой смысл в фетче через fetchedResultController если при условии 3х слойной архитектуры на выходе я получу PresentableModel?(просто другим способом)
+     Какой смысл в фетче через fetchedResultController если при условии 3х слойной архитектуры на выходе я получу PresentableModel, только для делеагата и таблицы?
+     И правильно ли я понимаю что это будут разные функции: для таблицы fetchToTableView, для главного экрана fetch?
      Как лучше протянуть делегат с PersistenceService до класса с таблицей?(как я понял импорт CoreData куда либо кроме CoreData service отпадает)
+     Лекция 8, слайд 11
+     Я не разобрался зачем нам проворачивать эти действия в ДЗ, возможно это просто пример но в чате кого-то этот вопрос интересовал.
+     
      
      
     func fetchToTableView() -> [AnswerModel] {
@@ -82,8 +87,6 @@ class PersistenceService: PersistenceStore {
         var results = [AnswerModel]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-
-        mainMOC.automaticallyMergesChangesFromParent = true
 
         backgroundMOC.performAndWait {
             do {

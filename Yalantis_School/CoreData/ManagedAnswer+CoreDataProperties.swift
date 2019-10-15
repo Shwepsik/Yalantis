@@ -16,9 +16,10 @@ extension ManagedAnswer {
         return NSFetchRequest<ManagedAnswer>(entityName: "ManagedAnswer")
     }
 
-    func toAnswerModel(string: String) -> AnswerModel {
-        return AnswerModel(answer: string)
+    func toAnswerModel(string: String, date: Date) -> AnswerModel {
+        return AnswerModel(answer: string, timestamp: date)
     }
 
     @NSManaged public var answer: String?
+    @NSManaged public var timestamp: Date?
 }

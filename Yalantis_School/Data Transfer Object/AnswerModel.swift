@@ -19,6 +19,7 @@ struct AnswerModel {
     }
 
     var answer: String
+    var timestamp: Date
 }
 
 extension AnswerModel: Decodable {
@@ -27,9 +28,10 @@ extension AnswerModel: Decodable {
         let container = try decoder.container(keyedBy: RootKey.self)
         let answerContainer = try container.nestedContainer(keyedBy: AnswerKey.self, forKey: .magic)
         self.answer = try answerContainer.decode(type(of: self.answer), forKey: .answer)
+        self.timestamp = Date()
     }
 
-    func toPresentableAnswer(string: String) -> PresentableAnswer {
-        return PresentableAnswer(answer: string)
+    func toPresentableAnswer(string: String, date: String) -> PresentableAnswer {
+        return PresentableAnswer(answer: string, timestamp: date)
     }
 }

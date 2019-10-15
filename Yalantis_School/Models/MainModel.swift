@@ -29,6 +29,7 @@ class MainModel {
                 let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
                 response(offlineAnswer)
             } else {
+                self.save(answer!)
                 response(answer)
             }
         }
@@ -49,13 +50,22 @@ class MainModel {
 
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
-                let answer = AnswerModel(answer: phrase)
-                persistenceService.save(answer: answer)
+                let answer = AnswerModel(answer: phrase, timestamp: Date())
+                save(answer)
             }
         }
     }
 
+    func fetchAllAnswers() -> [AnswerModel] {
+        let answerPack = persistenceService.fetch()
+        return answerPack
+    }
+
     func save(_ answerModel: AnswerModel) {
         persistenceService.save(answer: answerModel)
+    }
+
+    func delete(_ answerModel: AnswerModel) {
+        persistenceService.delete(answer: answerModel)
     }
 }

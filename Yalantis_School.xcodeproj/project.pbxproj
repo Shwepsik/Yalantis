@@ -17,6 +17,7 @@
 		38533A252338FE86002108C4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A232338FE86002108C4 /* strings.swift */; };
 		38533B62233BF5DC002108C4 /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38533B61233BF5DC002108C4 /* Colors.txt */; };
 		38533B64233BF6C9002108C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533B63233BF6C9002108C4 /* Colors.swift */; };
+		387ECF2F2355047D0049E62A /* Yalantis_School.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF2D2355047D0049E62A /* Yalantis_School.xcdatamodeld */; };
 		388AB87B234D5DA5004E3A91 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */; };
 		388AB87C234D5DA7004E3A91 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */; };
 		388AB87D234D5DA9004E3A91 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */; };
@@ -24,17 +25,16 @@
 		3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B52309CA470051BA08 /* AppDelegate.swift */; };
 		3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3B72309CA470051BA08 /* MainViewController.swift */; };
 		3899F3BB2309CA470051BA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3899F3B92309CA470051BA08 /* Main.storyboard */; };
-		3899F3BE2309CA470051BA08 /* Yalantis_School.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3BC2309CA470051BA08 /* Yalantis_School.xcdatamodeld */; };
 		3899F3C02309CA480051BA08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3899F3BF2309CA480051BA08 /* Assets.xcassets */; };
 		3899F3C32309CA480051BA08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3899F3C12309CA480051BA08 /* LaunchScreen.storyboard */; };
 		3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CA2309CA5C0051BA08 /* PersistenceService.swift */; };
 		3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CD2309CAD10051BA08 /* AlertController.swift */; };
 		3899F3D02309CADA0051BA08 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */; };
 		3899F3D62309CB7E0051BA08 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */; };
-		3899F3D82309CB8C0051BA08 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D72309CB8C0051BA08 /* BackgroundViewController.swift */; };
 		3899F3DB2309CBFE0051BA08 /* ManagedAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3D92309CBFE0051BA08 /* ManagedAnswer+CoreDataClass.swift */; };
 		3899F3DC2309CBFE0051BA08 /* ManagedAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3DA2309CBFE0051BA08 /* ManagedAnswer+CoreDataProperties.swift */; };
 		3899F3E12309CC330051BA08 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3899F3E02309CC330051BA08 /* AnswerModel.swift */; };
+		38B09B602353964600D45EB6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B09B5F2353964600D45EB6 /* SettingsTableViewCell.swift */; };
 		38C397832341376E00AAB042 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C397822341376E00AAB042 /* RequestService.swift */; };
 		38C3978523413B6300AAB042 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3978423413B6300AAB042 /* DataFetcher.swift */; };
 		38C3978823413D8600AAB042 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3978723413D8600AAB042 /* MainModel.swift */; };
@@ -55,6 +55,8 @@
 		38533A232338FE86002108C4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		38533B61233BF5DC002108C4 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		38533B63233BF6C9002108C4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		387ECF2E2355047D0049E62A /* Yalantis_School.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yalantis_School.xcdatamodel; sourceTree = "<group>"; };
+		387ECF3223550F200049E62A /* Yalantis_School 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Yalantis_School 2.xcdatamodel"; sourceTree = "<group>"; };
 		388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -63,7 +65,6 @@
 		3899F3B52309CA470051BA08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3899F3B72309CA470051BA08 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3899F3BA2309CA470051BA08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3899F3BD2309CA470051BA08 /* Yalantis_School.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yalantis_School.xcdatamodel; sourceTree = "<group>"; };
 		3899F3BF2309CA480051BA08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3899F3C22309CA480051BA08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3899F3C42309CA480051BA08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,10 +72,10 @@
 		3899F3CD2309CAD10051BA08 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		3899F3D72309CB8C0051BA08 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
 		3899F3D92309CBFE0051BA08 /* ManagedAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3899F3DA2309CBFE0051BA08 /* ManagedAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3899F3E02309CC330051BA08 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		38B09B5F2353964600D45EB6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		38C397822341376E00AAB042 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		38C3978423413B6300AAB042 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		38C3978723413D8600AAB042 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 				3899F3CC2309CA950051BA08 /* Extensions */,
 				38C3978623413CCF00AAB042 /* Models */,
 				3899F3D42309CB680051BA08 /* Views */,
+				38B09B5E2353962500D45EB6 /* Cell */,
 				3899F3DD2309CC060051BA08 /* CoreData */,
 				3899F3DF2309CC250051BA08 /* Data Transfer Object */,
 				38D7685E2338FD6A00BB7CA9 /* SwiftGen */,
@@ -171,7 +173,6 @@
 			children = (
 				3899F3B72309CA470051BA08 /* MainViewController.swift */,
 				3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */,
-				3899F3D72309CB8C0051BA08 /* BackgroundViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +197,14 @@
 			path = "Data Transfer Object";
 			sourceTree = "<group>";
 		};
+		38B09B5E2353962500D45EB6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				38B09B5F2353964600D45EB6 /* SettingsTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		38C3978623413CCF00AAB042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				388AB877234D5D51004E3A91 /* Fonts */,
-				3899F3BC2309CA470051BA08 /* Yalantis_School.xcdatamodeld */,
+				387ECF2D2355047D0049E62A /* Yalantis_School.xcdatamodeld */,
 				38D7684E23383BDD00BB7CA9 /* Localizable.strings */,
 				38D768512338413F00BB7CA9 /* swiftgen.yml */,
 				38533B61233BF5DC002108C4 /* Colors.txt */,
@@ -412,18 +421,18 @@
 				38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,
+				387ECF2F2355047D0049E62A /* Yalantis_School.xcdatamodeld in Sources */,
 				388AB87F234D5E9D004E3A91 /* Fonts.swift in Sources */,
 				38277FB52345364B007BE803 /* Storyboard Segues.swift in Sources */,
 				3831507D234D299F00BFB368 /* ShakeCountModel.swift in Sources */,
-				3899F3BE2309CA470051BA08 /* Yalantis_School.xcdatamodeld in Sources */,
 				3899F3DC2309CBFE0051BA08 /* ManagedAnswer+CoreDataProperties.swift in Sources */,
 				3899F3D02309CADA0051BA08 /* HideKeyboard.swift in Sources */,
 				38533A252338FE86002108C4 /* strings.swift in Sources */,
 				38315072234AABEA00BFB368 /* KeyChainService.swift in Sources */,
 				38C397832341376E00AAB042 /* RequestService.swift in Sources */,
 				38533A242338FE86002108C4 /* assets-images.swift in Sources */,
-				3899F3D82309CB8C0051BA08 /* BackgroundViewController.swift in Sources */,
 				3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */,
+				38B09B602353964600D45EB6 /* SettingsTableViewCell.swift in Sources */,
 				38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */,
 				3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */,
 				38C3978823413D8600AAB042 /* MainModel.swift in Sources */,
@@ -507,7 +516,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -562,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -577,16 +586,18 @@
 			baseConfigurationReference = 40192F84C7EE2F7D347547E3 /* Pods-Yalantis_School.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P56FNMF4C6;
 				INFOPLIST_FILE = Yalantis_School/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Yalantis-School";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -597,16 +608,18 @@
 			baseConfigurationReference = 69F2C43E4E674FD55A3CA1CD /* Pods-Yalantis_School.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P56FNMF4C6;
 				INFOPLIST_FILE = Yalantis_School/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Yalantis-School";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -636,12 +649,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3899F3BC2309CA470051BA08 /* Yalantis_School.xcdatamodeld */ = {
+		387ECF2D2355047D0049E62A /* Yalantis_School.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3899F3BD2309CA470051BA08 /* Yalantis_School.xcdatamodel */,
+				387ECF3223550F200049E62A /* Yalantis_School 2.xcdatamodel */,
+				387ECF2E2355047D0049E62A /* Yalantis_School.xcdatamodel */,
 			);
-			currentVersion = 3899F3BD2309CA470051BA08 /* Yalantis_School.xcdatamodel */;
+			currentVersion = 387ECF3223550F200049E62A /* Yalantis_School 2.xcdatamodel */;
 			path = Yalantis_School.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

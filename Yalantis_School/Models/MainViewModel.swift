@@ -25,13 +25,23 @@ class MainViewModel {
 
     func getAnswer(question: String, response: @escaping(PresentableAnswerResponse)) {
         mainModel.getAnswer(question) { (answer) in
-            let presentableAnswer = answer?.toPresentableAnswer(string: answer?.answer.uppercased() ?? "")
+            let presentableAnswer = answer?.toPresentableAnswer(
+                string: answer?.answer.uppercased() ?? "",
+                date: self.dateToString(date: answer!.timestamp)
+            )
             response(presentableAnswer)
         }
     }
 
+    func fetchAllAnswers() -> [PresentableAnswer] {
+        let presentableAnswer = mainModel.fetchAllAnswers().map {
+            $0.toPresentableAnswer(string: $0.answer.uppercased(), date: self.dateToString(date: $0.timestamp))
+        }
+        return presentableAnswer
+    }
+
     func savePharse(presentableAnswer: PresentableAnswer) {
-        let answerModel = presentableAnswer.toAnswerModel(string: presentableAnswer.answer)
+        let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer, date: Date())
         mainModel.save(answerModel)
     }
 
@@ -44,5 +54,17 @@ class MainViewModel {
             let presentableShakeCount = shake.toPresentableShakeCount(intenger: shake.shakeCount)
             completion(presentableShakeCount)
         }
+    }
+
+    func delete(presentableAnswer: PresentableAnswer) {
+        let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer.lowercased(), date: Date())
+        mainModel.delete(answerModel)
+    }
+
+    func dateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy HH:mm"
+        let result = formatter.string(from: date)
+        return result
     }
 }

@@ -103,7 +103,7 @@ class PersistenceService: PersistenceStore {
     func save(answer: AnswerModel) {
         backgroundMOC.performAndWait {
             let modelObject = ManagedAnswer(context: backgroundMOC)
-            modelObject.answer = answer.answer
+            modelObject.answer = answer.answer.lowercased()
             modelObject.timestamp = answer.timestamp
             save()
         }

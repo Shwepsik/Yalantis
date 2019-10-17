@@ -60,7 +60,7 @@ class MainViewModel {
     func delete(presentableAnswer: PresentableAnswer) {
         let answerModel = presentableAnswer.toAnswerModel(
             answer: presentableAnswer.answer.lowercased(),
-            date: Date()
+            date: date(from: presentableAnswer.timestamp ?? "")
         )
         mainModel.delete(answerModel)
     }
@@ -69,5 +69,10 @@ class MainViewModel {
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         let result = formatter.string(from: date)
         return result
+    }
+
+    func date(from string: String) -> Date {
+        let result = formatter.date(from: string)
+        return result!
     }
 }

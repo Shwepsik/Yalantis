@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.getShakeCounts()
         self.fillView()
+        self.setupTabBarItem()
         self.addConstraints()
         self.mainViewModel.createPhrase()
         self.tapToHide()
@@ -30,6 +31,13 @@ class MainViewController: UIViewController {
 
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+
+    private func setupTabBarItem() {
+        self.tabBarItem = UITabBarItem(
+        title: L10n.ball,
+        image: Asset.ball.image,
+        selectedImage: Asset.ball.image)
     }
 
     private func addConstraints() {

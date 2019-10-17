@@ -22,28 +22,38 @@ class PersistenceService: PersistenceStore {
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Yalantis_School")
 
-        /*add necessary support for migration*/
         let description = NSPersistentStoreDescription()
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
         container.persistentStoreDescriptions.append(description)
-        /*add necessary support for migration*/
 
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            container.viewContext.automaticallyMergesChangesFromParent = true
         })
         return container
     }()
 
-    lazy var mainMOC = persistentContainer.viewContext
-    lazy var backgroundMOC = persistentContainer.newBackgroundContext()
+    private(set) lazy var mainMOC = persistentContainer.viewContext
+    private(set) lazy var backgroundMOC = persistentContainer.newBackgroundContext()
 
     // MARK: - Core Data Saving support
 
-    func save() {
-        mainMOC.automaticallyMergesChangesFromParent = true
+    func saveMainMOC() {
+        if mainMOC.hasChanges {
+            do {
+                try mainMOC.save()
+                print("Saved")
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+
+    func saveBackgroundMOC() {
         if backgroundMOC.hasChanges {
             do {
                 try backgroundMOC.save()
@@ -54,39 +64,11 @@ class PersistenceService: PersistenceStore {
             }
         }
     }
-/*  Лекция 7, слайд 36
-     Какой смысл в фетче через fetchedResultController если при условии 3х слойной архитектуры на выходе я получу PresentableModel, только для делеагата и таблицы?
-     И правильно ли я понимаю что это будут разные функции: для таблицы fetchToTableView, для главного экрана fetch?
-     Как лучше протянуть делегат с PersistenceService до класса с таблицей?(как я понял импорт CoreData куда либо кроме CoreData service отпадает)
-     Лекция 8, слайд 11
-     Я не разобрался зачем нам проворачивать эти действия в ДЗ, возможно это просто пример но в чате кого-то этот вопрос интересовал.
-     
-     
-     
-    func fetchToTableView() -> [AnswerModel] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        let fetchresult = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: backgroundMOC,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-
-        do {
-            try fetchresult.performFetch()
-            let result = fetchresult.fetchedObjects as? [ManagedAnswer]
-            return result?.map { $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp!) } ?? [AnswerModel]()
-        } catch {
-            print(error)
-            return [AnswerModel]()
-        }
-    }
- */
 
     func fetch() -> [AnswerModel] {
         var results = [AnswerModel]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedAnswer.timestamp), ascending: false)]
 
         backgroundMOC.performAndWait {
             do {
@@ -103,27 +85,65 @@ class PersistenceService: PersistenceStore {
     }
 
     func save(answer: AnswerModel) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedAnswer.timestamp), ascending: false)]
+        //fetch from mainMOC
+        let main = try! mainMOC.fetch(fetchRequest).first! as? ManagedAnswer
+        print("\(main?.answer) first fetch from mainMOC")
+        let objectID = main!.objectID
+
         backgroundMOC.performAndWait {
-            let modelObject = ManagedAnswer(context: backgroundMOC)
-            modelObject.answer = answer.answer.lowercased()
-            modelObject.timestamp = answer.timestamp
-            save()
+            let sameAnswer = backgroundMOC.object(with: objectID) as! ManagedAnswer
+            sameAnswer.answer = answer.answer
+            try! backgroundMOC.save()
+            print("\(sameAnswer.answer) saved answer")
         }
+        
+        let back = try! backgroundMOC.fetch(fetchRequest).first! as? ManagedAnswer
+        print("\(back?.answer) answer from backgroundMOC after save")
+
+        try! mainMOC.save()
+        // fetch from mainMOC after saved on backgroundMOC
+       // let secondMain = try! mainMOC.fetch(fetchRequest).first! as? ManagedAnswer
+        print("\(main?.answer) second fetch from mainMOC")
+        print("automaticallyMergesChangesFromParent \(mainMOC.automaticallyMergesChangesFromParent)")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        backgroundMOC.performAndWait {
+//            let modelObject = ManagedAnswer(context: backgroundMOC)
+//            modelObject.answer = answer.answer.lowercased()
+//            modelObject.timestamp = answer.timestamp
+//            try! backgroundMOC.save()
+//        }
     }
 
     func delete(answer: AnswerModel) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        fetchRequest.predicate = NSPredicate(format: "answer == %@", answer.answer)
+        fetchRequest.predicate = NSPredicate(
+            format: "answer == %@",
+            argumentArray: [answer.answer, answer.timestamp]
+        )
         backgroundMOC.performAndWait {
             do {
                 let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [NSManagedObject]
                 guard let fetchedObject = fetchedObjects?.first else { return }
                 backgroundMOC.delete(fetchedObject)
-                save()
+                try backgroundMOC.save()
             } catch {
                 print(error)
             }
         }
-
     }
 }

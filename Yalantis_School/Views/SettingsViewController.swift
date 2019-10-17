@@ -15,11 +15,11 @@ class SettingsViewController: UIViewController {
     private var answerInfo = [PresentableAnswer]()
     private var alertTextField = UITextField()
     private var answerPack = [PresentableAnswer]()
-    private let cellReuseIdentifier = "SettingsCell"
+    private let cellReuseIdentifier = "SettingTableViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addBarButtonItem()
+        self.setupBarButtonItems()
         self.setupTableView()
         self.tapToHide()
     }
@@ -30,13 +30,18 @@ class SettingsViewController: UIViewController {
         self.tableView.reloadData()
     }
 
-    private func addBarButtonItem() {
+    private func setupBarButtonItems() {
         self.title = L10n.navigationTitle
         let button = UIBarButtonItem(image: Asset.plus.image,
                                      style: .plain,
                                      target: self,
                                      action: #selector(showAlertForSavePhrase))
         self.navigationItem.rightBarButtonItem = button
+
+        self.tabBarItem = UITabBarItem(
+        title: L10n.settings,
+        image: Asset.settings.image,
+        selectedImage: Asset.settings.image)
     }
 
     private func setupTableView() {
@@ -64,9 +69,7 @@ class SettingsViewController: UIViewController {
         })
 
         let saveAction = UIAlertAction(title: L10n.saveButton, style: .default) { (_) in
-            if self.alertTextField.text!.isEmpty {
-                return
-            } else {
+            if let text = self.alertTextField.text, !text.isEmpty {
                 let answer = PresentableAnswer(answer: self.alertTextField.text!)
                 self.mainViewModel.savePharse(presentableAnswer: answer)
                 self.answerPack = self.mainViewModel.fetchAllAnswers()
@@ -90,10 +93,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as? SettingTableViewCell
-        cell?.answerLabel.text = answerPack[indexPath.row].answer
-        cell?.timeStampLabel.text = answerPack[indexPath.row].timestamp
-        return cell ?? UITableViewCell()
+        let cell: SettingTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.answerLabel.text = answerPack[indexPath.row].answer
+        cell.timeStampLabel.text = answerPack[indexPath.row].timestamp
+        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

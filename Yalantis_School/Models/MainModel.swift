@@ -29,7 +29,7 @@ class MainModel {
                 let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
                 response(offlineAnswer)
             } else {
-                self.save(answer!)
+                guard let answer = answer else { return }
                 response(answer)
             }
         }

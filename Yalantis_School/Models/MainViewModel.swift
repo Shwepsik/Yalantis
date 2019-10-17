@@ -14,6 +14,7 @@ typealias PresentableShakeResponse = (_ result: PresentableShakeCount) -> Void
 class MainViewModel {
 
    private let mainModel: MainModel
+   private(set) lazy var formatter = DateFormatter()
 
     init(mainModel: MainModel) {
         self.mainModel = mainModel
@@ -27,7 +28,7 @@ class MainViewModel {
         mainModel.getAnswer(question) { (answer) in
             let presentableAnswer = answer?.toPresentableAnswer(
                 string: answer?.answer.uppercased() ?? "",
-                date: self.dateToString(date: answer?.timestamp ?? Date())
+                date: self.string(from: answer?.timestamp ?? Date())
             )
             response(presentableAnswer)
         }
@@ -35,7 +36,7 @@ class MainViewModel {
 
     func fetchAllAnswers() -> [PresentableAnswer] {
         let presentableAnswer = mainModel.fetchAllAnswers().map {
-            $0.toPresentableAnswer(string: $0.answer.uppercased(), date: self.dateToString(date: $0.timestamp))
+            $0.toPresentableAnswer(string: $0.answer.uppercased(), date: self.string(from: $0.timestamp))
         }
         return presentableAnswer
     }
@@ -56,14 +57,12 @@ class MainViewModel {
         }
     }
 
-    // Не добавлял форматирование с presentableAnswer.timestamp (string) в Date т.к делаю Predicate по ответу и в данном случае мне не важно какой Date(), если так лучше не делать то добавлю
     func delete(presentableAnswer: PresentableAnswer) {
         let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer.lowercased(), date: Date())
         mainModel.delete(answerModel)
     }
 
-    func dateToString(date: Date) -> String {
-        let formatter = DateFormatter()
+    func string(from date: Date) -> String {
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         let result = formatter.string(from: date)
         return result

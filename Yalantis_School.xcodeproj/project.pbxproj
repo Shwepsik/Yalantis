@@ -18,6 +18,7 @@
 		38533B62233BF5DC002108C4 /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38533B61233BF5DC002108C4 /* Colors.txt */; };
 		38533B64233BF6C9002108C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533B63233BF6C9002108C4 /* Colors.swift */; };
 		387ECF2F2355047D0049E62A /* Yalantis_School.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF2D2355047D0049E62A /* Yalantis_School.xcdatamodeld */; };
+		387ECF4B2357BE940049E62A /* ReusableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */; };
 		388AB87B234D5DA5004E3A91 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */; };
 		388AB87C234D5DA7004E3A91 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */; };
 		388AB87D234D5DA9004E3A91 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */; };
@@ -57,6 +58,7 @@
 		38533B63233BF6C9002108C4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		387ECF2E2355047D0049E62A /* Yalantis_School.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yalantis_School.xcdatamodel; sourceTree = "<group>"; };
 		387ECF3223550F200049E62A /* Yalantis_School 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Yalantis_School 2.xcdatamodel"; sourceTree = "<group>"; };
+		387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTableViewCell.swift; sourceTree = "<group>"; };
 		388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				3899F3CD2309CAD10051BA08 /* AlertController.swift */,
 				3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */,
+				387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -367,7 +370,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPods/SwiftLint/swiftlint\nPods/SwiftLint/swiftlint autocorrect\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Pods/SwiftLint/swiftlint\n#Pods/SwiftLint/swiftlint autocorrect\n";
 		};
 		5DBA198D423076DF64A6D81D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -431,6 +434,7 @@
 				38315072234AABEA00BFB368 /* KeyChainService.swift in Sources */,
 				38C397832341376E00AAB042 /* RequestService.swift in Sources */,
 				38533A242338FE86002108C4 /* assets-images.swift in Sources */,
+				387ECF4B2357BE940049E62A /* ReusableTableViewCell.swift in Sources */,
 				3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */,
 				38B09B602353964600D45EB6 /* SettingsTableViewCell.swift in Sources */,
 				38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */,

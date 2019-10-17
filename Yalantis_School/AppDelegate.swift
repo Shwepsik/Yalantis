@@ -33,16 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainViewController.mainViewModel = mainViewModel
         let settingsViewController = SettingsViewController()
         settingsViewController.mainViewModel = mainViewModel
+        settingsViewController.view.inputView?.reloadInputViews()
         let firstTabBarVC = UINavigationController(rootViewController: mainViewController)
-        firstTabBarVC.tabBarItem = UITabBarItem(
-            title: L10n.ball,
-            image: Asset.ball.image,
-            selectedImage: Asset.ball.image)
         let seconTabBarVC = UINavigationController(rootViewController: settingsViewController)
-        seconTabBarVC.tabBarItem = UITabBarItem(
-            title: L10n.settings,
-            image: Asset.settings.image,
-            selectedImage: Asset.settings.image)
         let tabBarVC = UITabBarController()
         tabBarVC.setViewControllers([firstTabBarVC, seconTabBarVC], animated: true)
         window?.rootViewController = tabBarVC
@@ -63,6 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        persistenceService.save()
+        persistenceService.saveMainMOC()
     }
 }

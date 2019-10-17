@@ -19,6 +19,7 @@
 		38533B64233BF6C9002108C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533B63233BF6C9002108C4 /* Colors.swift */; };
 		387ECF2F2355047D0049E62A /* Yalantis_School.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF2D2355047D0049E62A /* Yalantis_School.xcdatamodeld */; };
 		387ECF4B2357BE940049E62A /* ReusableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */; };
+		387ECF4D23587CEF0049E62A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387ECF4C23587CEF0049E62A /* TabBarController.swift */; };
 		388AB87B234D5DA5004E3A91 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */; };
 		388AB87C234D5DA7004E3A91 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */; };
 		388AB87D234D5DA9004E3A91 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */; };
@@ -59,6 +60,7 @@
 		387ECF2E2355047D0049E62A /* Yalantis_School.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yalantis_School.xcdatamodel; sourceTree = "<group>"; };
 		387ECF3223550F200049E62A /* Yalantis_School 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Yalantis_School 2.xcdatamodel"; sourceTree = "<group>"; };
 		387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTableViewCell.swift; sourceTree = "<group>"; };
+		387ECF4C23587CEF0049E62A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		388AB878234D5D5D004E3A91 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		388AB879234D5D65004E3A91 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		388AB87A234D5D72004E3A91 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				3899F3B72309CA470051BA08 /* MainViewController.swift */,
 				3899F3D52309CB7E0051BA08 /* SettingsViewController.swift */,
+				387ECF4C23587CEF0049E62A /* TabBarController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Pods/SwiftLint/swiftlint\n#Pods/SwiftLint/swiftlint autocorrect\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPods/SwiftLint/swiftlint\nPods/SwiftLint/swiftlint autocorrect\n";
 		};
 		5DBA198D423076DF64A6D81D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -421,6 +424,7 @@
 				3899F3B82309CA470051BA08 /* MainViewController.swift in Sources */,
 				38C3978523413B6300AAB042 /* DataFetcher.swift in Sources */,
 				38533B64233BF6C9002108C4 /* Colors.swift in Sources */,
+				387ECF4D23587CEF0049E62A /* TabBarController.swift in Sources */,
 				38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,

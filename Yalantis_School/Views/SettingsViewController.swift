@@ -37,11 +37,6 @@ class SettingsViewController: UIViewController {
                                      target: self,
                                      action: #selector(showAlertForSavePhrase))
         self.navigationItem.rightBarButtonItem = button
-
-        self.tabBarItem = UITabBarItem(
-        title: L10n.settings,
-        image: Asset.settings.image,
-        selectedImage: Asset.settings.image)
     }
 
     private func setupTableView() {

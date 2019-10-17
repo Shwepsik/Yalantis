@@ -19,11 +19,10 @@ class SettingTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.setupOutlets()
+        self.setupConstraints()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
+    private func setupConstraints() {
         answerLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(self.contentView).offset(20)
             make.centerY.equalTo(self.contentView)

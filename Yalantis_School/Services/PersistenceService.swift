@@ -31,13 +31,20 @@ class PersistenceService: PersistenceStore {
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-            container.viewContext.automaticallyMergesChangesFromParent = true
         })
         return container
     }()
 
     private(set) lazy var mainMOC = persistentContainer.viewContext
     private(set) lazy var backgroundMOC = persistentContainer.newBackgroundContext()
+
+    init() {
+        mainMOC.automaticallyMergesChangesFromParent = true
+        mainMOC.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+        backgroundMOC.automaticallyMergesChangesFromParent = true
+        backgroundMOC.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
+    }
 
     // MARK: - Core Data Saving support
 
@@ -85,48 +92,12 @@ class PersistenceService: PersistenceStore {
     }
 
     func save(answer: AnswerModel) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedAnswer.timestamp), ascending: false)]
-        //fetch from mainMOC
-        let main = try! mainMOC.fetch(fetchRequest).first! as? ManagedAnswer
-        print("\(main?.answer) first fetch from mainMOC")
-        let objectID = main!.objectID
-
         backgroundMOC.performAndWait {
-            let sameAnswer = backgroundMOC.object(with: objectID) as! ManagedAnswer
-            sameAnswer.answer = answer.answer
-            try! backgroundMOC.save()
-            print("\(sameAnswer.answer) saved answer")
+            let modelObject = ManagedAnswer(context: backgroundMOC)
+            modelObject.answer = answer.answer.lowercased()
+            modelObject.timestamp = answer.timestamp
+            saveBackgroundMOC()
         }
-        
-        let back = try! backgroundMOC.fetch(fetchRequest).first! as? ManagedAnswer
-        print("\(back?.answer) answer from backgroundMOC after save")
-
-        try! mainMOC.save()
-        // fetch from mainMOC after saved on backgroundMOC
-       // let secondMain = try! mainMOC.fetch(fetchRequest).first! as? ManagedAnswer
-        print("\(main?.answer) second fetch from mainMOC")
-        print("automaticallyMergesChangesFromParent \(mainMOC.automaticallyMergesChangesFromParent)")
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        backgroundMOC.performAndWait {
-//            let modelObject = ManagedAnswer(context: backgroundMOC)
-//            modelObject.answer = answer.answer.lowercased()
-//            modelObject.timestamp = answer.timestamp
-//            try! backgroundMOC.save()
-//        }
     }
 
     func delete(answer: AnswerModel) {

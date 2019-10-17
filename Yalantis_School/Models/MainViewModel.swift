@@ -58,7 +58,10 @@ class MainViewModel {
     }
 
     func delete(presentableAnswer: PresentableAnswer) {
-        let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer.lowercased(), date: Date())
+        let answerModel = presentableAnswer.toAnswerModel(
+            answer: presentableAnswer.answer.lowercased(),
+            date: Date()
+        )
         mainModel.delete(answerModel)
     }
 

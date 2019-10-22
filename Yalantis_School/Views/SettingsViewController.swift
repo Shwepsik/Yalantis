@@ -8,68 +8,105 @@
 
 import UIKit
 
-class SettingsViewController: BackgroundViewController {
+class SettingsViewController: UIViewController {
 
     var mainViewModel: MainViewModel!
-    private let answerTextField = UITextField()
-    private let descriptionLabel = UILabel()
-    private let saveButton = UIButton()
+    private var tableView = UITableView()
+    private var answerInfo = [PresentableAnswer]()
+    private var alertTextField = UITextField()
+    private var answerPack = [PresentableAnswer]()
+    private let cellReuseIdentifier = "SettingTableViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addOutlets()
-        self.addConstraints()
+        self.setupBarButtonItems()
+        self.setupTableView()
         self.tapToHide()
     }
 
-    private func addOutlets() {
-        answerTextField.placeholder = L10n.settingsTextFieldPlaceholder
-        answerTextField.textAlignment = .center
-        answerTextField.borderStyle = .roundedRect
-        answerTextField.font = FontFamily.SFProDisplay.regular.font(size: 15)
-        view.addSubview(answerTextField)
-
-        descriptionLabel.text = L10n.descriptionLabelText
-        descriptionLabel.textColor = .white
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.font = FontFamily.SFProDisplay.regular.font(size: 17)
-        view.addSubview(descriptionLabel)
-
-        saveButton.setBackgroundImage(Asset.button.image, for: .normal)
-        saveButton.setTitle(L10n.saveButton, for: .normal)
-        saveButton.setTitleColor(ColorName.navigationBarTitleColor.color, for: .normal)
-        saveButton.titleLabel?.font = FontFamily.SFProDisplay.medium.font(size: 17)
-        saveButton.addTarget(self, action: #selector(savePhrase), for: .touchUpInside)
-        view.addSubview(saveButton)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        answerPack = mainViewModel.fetchAllAnswers()
+        self.tableView.reloadData()
     }
 
-    private func addConstraints() {
-        answerTextField.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-        }
-        descriptionLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(answerTextField)
-            make.bottom.equalTo(answerTextField.snp.top).offset(-50)
-            make.width.equalTo(answerTextField)
-        }
-        saveButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(answerTextField)
-            make.top.equalTo(answerTextField.snp.bottom).offset(30)
-            make.height.equalTo(40)
-            make.width.equalTo(self.view).multipliedBy(0.33)
-        }
+    private func setupBarButtonItems() {
+        self.title = L10n.navigationTitle
+        let button = UIBarButtonItem(image: Asset.plus.image,
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(showAlertForSavePhrase))
+        self.navigationItem.rightBarButtonItem = button
     }
 
-    @objc func savePhrase() {
-        if answerTextField.text!.isEmpty {
-            self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
-        } else {
-            let answer = PresentableAnswer(answer: answerTextField.text!)
-            mainViewModel.savePharse(presentableAnswer: answer)
-            self.answerTextField.text = ""
-            self.showAlert(title: L10n.perfect, messgae: "", style: .alert)
+    private func setupTableView() {
+        self.tableView.register(SettingTableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseIdentifier)
+        self.view.addSubview(tableView)
+
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.leading.equalTo(self.view)
+            make.trailing.equalTo(self.view)
+        }
+
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+
+    @objc func showAlertForSavePhrase() {
+        let alert = UIAlertController(title: L10n.hereUCanAddOwnAnswer, message: "", preferredStyle: .alert)
+
+        alert.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = L10n.alertPlaceholder
+            textField.font = FontFamily.SFProDisplay.regular.font(size: 15)
+            textField.textAlignment = .center
+            self.alertTextField = textField
+        })
+
+        let saveAction = UIAlertAction(title: L10n.saveButton, style: .default) { (_) in
+            if let text = self.alertTextField.text, !text.isEmpty {
+                let answer = PresentableAnswer(answer: self.alertTextField.text!)
+                self.mainViewModel.savePharse(presentableAnswer: answer)
+                self.answerPack = self.mainViewModel.fetchAllAnswers()
+                self.tableView.reloadData()
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: L10n.cancelAction, style: .destructive, handler: nil)
+
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return answerPack.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: SettingTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.answerLabel.text = answerPack[indexPath.row].answer
+        cell.timeStampLabel.text = answerPack[indexPath.row].timestamp
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
+    }
+
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .left)
+            mainViewModel.delete(presentableAnswer: answerPack[indexPath.row])
+            answerPack.remove(at: indexPath.row)
+            tableView.endUpdates()
         }
     }
 }

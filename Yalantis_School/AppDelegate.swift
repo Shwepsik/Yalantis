@@ -14,30 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    private let persistenceService = PersistenceService()
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let requestService = RequestService()
-        let dataFetcher = DataFetcher(requestService: requestService)
-        let keyChainService = KeyChainService()
-        let mainModel = MainModel(dataFetcher: dataFetcher,
-                                  persistenceService: persistenceService,
-                                  keyChainService: keyChainService)
-        let mainViewModel = MainViewModel(mainModel: mainModel)
-
+        let tabBarController = TabBarController()
         window = UIWindow(frame: UIScreen.main.bounds)
-
-        let mainViewController = MainViewController()
-        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
-        mainViewController.mainViewModel = mainViewModel
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
 
         return true
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        persistenceService.save()
     }
 }

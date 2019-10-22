@@ -23,4 +23,11 @@
 // Alert
 "add_some_text" = "Please add some text";
 "perfect" = "Perfect";
-"ok" = "OK";'
+"ok" = "OK";
+"here_u_can_add_own_answer" = "Here you can add own answer";
+"cancel_action" = "Cancel";
+"alert_placeholder" = "Your Answer";
+
+// TabBar Items
+"ball" = "Ball";
+"settings" = "Settings";

@@ -15,6 +15,7 @@ class MainModel {
    private let dataFetcher: DataFetching
    private let persistenceService: PersistenceStore
    private let keyChainService: SecureStorage
+   let timestamp = Date()
 
     init(dataFetcher: DataFetching, persistenceService: PersistenceStore, keyChainService: SecureStorage) {
         self.dataFetcher = dataFetcher
@@ -29,6 +30,8 @@ class MainModel {
                 let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
                 response(offlineAnswer)
             } else {
+                guard let answer = answer else { return }
+                self.save(answer)
                 response(answer)
             }
         }
@@ -49,13 +52,22 @@ class MainModel {
 
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
-                let answer = AnswerModel(answer: phrase)
-                persistenceService.save(answer: answer)
+                let answer = AnswerModel(answer: phrase, timestamp: timestamp, uuid: UUID())
+                save(answer)
             }
         }
     }
 
+    func fetchAllAnswers() -> [AnswerModel] {
+        let answerPack = persistenceService.fetch()
+        return answerPack
+    }
+
     func save(_ answerModel: AnswerModel) {
         persistenceService.save(answer: answerModel)
+    }
+
+    func delete(_ answerModel: AnswerModel) {
+        persistenceService.delete(answer: answerModel)
     }
 }

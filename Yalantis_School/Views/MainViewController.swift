@@ -9,37 +9,23 @@
 import UIKit
 import SnapKit
 
-class MainViewController: BackgroundViewController {
+class MainViewController: UIViewController {
 
     var mainViewModel: MainViewModel!
 
     private let questionTextField = UITextField()
     private let answerLabel = UILabel()
     private let shakeCountsLabel = UILabel()
+    private let backgroundImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getShakeCounts()
-        self.addOutlets()
+        self.fillView()
         self.addConstraints()
-        self.addBarButtonItem()
         self.mainViewModel.createPhrase()
         self.tapToHide()
         self.becomeFirstResponder()
-    }
-
-    private func addBarButtonItem() {
-        let button = UIBarButtonItem(image: Asset.settings.image,
-                                     style: .plain,
-                                     target: self,
-                                     action: #selector(pushSettingsController))
-        self.navigationItem.rightBarButtonItem = button
-    }
-
-    @objc func pushSettingsController() {
-        let settingsViewController = SettingsViewController()
-        settingsViewController.mainViewModel = mainViewModel
-        self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
 
     override var canBecomeFirstResponder: Bool {
@@ -67,9 +53,22 @@ class MainViewController: BackgroundViewController {
             make.width.equalTo(20)
             make.height.equalTo(40)
         }
+
+        backgroundImageView.snp.makeConstraints { (make) in
+            make.leading.equalTo(self.view)
+            make.trailing.equalTo(self.view)
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+        }
     }
 
-    private func addOutlets() {
+    private func fillView() {
+
+        self.title = L10n.navigationTitle
+        backgroundImageView.image = Asset.sky.image
+        backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImageView, at: 0)
+
         questionTextField.placeholder = L10n.mainTextFieldPlaceholder
         questionTextField.textAlignment = .center
         questionTextField.borderStyle = .roundedRect

@@ -12,6 +12,7 @@ import CoreData
 protocol PersistenceStore {
     func fetch() -> [AnswerModel]
     func save(answer: AnswerModel)
+    func delete(answer: AnswerModel)
 }
 
 class PersistenceService: PersistenceStore {
@@ -20,6 +21,12 @@ class PersistenceService: PersistenceStore {
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Yalantis_School")
+
+        let description = NSPersistentStoreDescription()
+        description.shouldMigrateStoreAutomatically = true
+        description.shouldInferMappingModelAutomatically = true
+        container.persistentStoreDescriptions.append(description)
+
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -28,15 +35,34 @@ class PersistenceService: PersistenceStore {
         return container
     }()
 
-    lazy var context = persistentContainer.viewContext
+    private(set) lazy var mainMOC = persistentContainer.viewContext
+    private(set) lazy var backgroundMOC = persistentContainer.newBackgroundContext()
+
+    init() {
+        mainMOC.automaticallyMergesChangesFromParent = true
+        mainMOC.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+        backgroundMOC.automaticallyMergesChangesFromParent = true
+        backgroundMOC.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
+    }
 
     // MARK: - Core Data Saving support
 
-    func save() {
-        if context.hasChanges {
+    func saveMainMOC() {
+        if mainMOC.hasChanges {
             do {
-                try context.save()
-                print("Saved")
+                try mainMOC.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+
+    func saveBackgroundMOC() {
+        if backgroundMOC.hasChanges {
+            do {
+                try backgroundMOC.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -45,19 +71,47 @@ class PersistenceService: PersistenceStore {
     }
 
     func fetch() -> [AnswerModel] {
+        var results = [AnswerModel]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        do {
-            let fetchedObjects = try context.fetch(fetchRequest) as? [ManagedAnswer]
-            return fetchedObjects?.map { $0.toAnswerModel(string: $0.answer ?? "1") } ?? [AnswerModel]()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedAnswer.timestamp), ascending: false)]
+
+        backgroundMOC.performAndWait {
+            do {
+                let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [ManagedAnswer]
+                results = fetchedObjects?.map {
+                    $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp ?? Date(), uuid: $0.uuid ?? UUID())
+                } ?? results
             } catch {
-            print(error)
-            return [AnswerModel]()
+                print(error)
+            }
         }
+
+        return results
     }
 
     func save(answer: AnswerModel) {
-          let modelObject = ManagedAnswer(context: context)
-          modelObject.answer = answer.answer
-          save()
+        backgroundMOC.performAndWait {
+            let modelObject = ManagedAnswer(context: backgroundMOC)
+            modelObject.answer = answer.answer.lowercased()
+            modelObject.timestamp = answer.timestamp
+            modelObject.uuid = answer.uuid
+            saveBackgroundMOC()
+        }
+    }
+
+    func delete(answer: AnswerModel) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
+        fetchRequest.predicate = NSPredicate(format: "uuid == %@", answer.uuid as NSUUID)
+
+        backgroundMOC.performAndWait {
+            do {
+                let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [NSManagedObject]
+                guard let fetchedObject = fetchedObjects?.first else { return }
+                backgroundMOC.delete(fetchedObject)
+                try backgroundMOC.save()
+            } catch {
+                print(error)
+            }
+        }
     }
 }

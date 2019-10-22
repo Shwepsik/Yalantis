@@ -18,5 +18,4 @@ extension ShakeCountModel {
     func toPresentableShakeCount(intenger: Int) -> PresentableShakeCount {
         return PresentableShakeCount(shakeCount: String(intenger))
     }
-
 }

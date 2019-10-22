@@ -12,11 +12,12 @@ struct PresentableAnswer {
 
     var answer: String
     var timestamp: String?
+    var uuid: UUID?
 }
 
 extension PresentableAnswer {
 
-    func toAnswerModel(answer: String, date: Date) -> AnswerModel {
-        return AnswerModel(answer: answer, timestamp: date)
+    func toAnswerModel(answer: String, date: Date, uuid: UUID) -> AnswerModel {
+        return AnswerModel(answer: answer, timestamp: date, uuid: uuid)
     }
 }

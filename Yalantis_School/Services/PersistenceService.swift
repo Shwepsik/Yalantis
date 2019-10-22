@@ -52,7 +52,6 @@ class PersistenceService: PersistenceStore {
         if mainMOC.hasChanges {
             do {
                 try mainMOC.save()
-                print("Saved")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -64,7 +63,6 @@ class PersistenceService: PersistenceStore {
         if backgroundMOC.hasChanges {
             do {
                 try backgroundMOC.save()
-                print("Saved")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -81,7 +79,7 @@ class PersistenceService: PersistenceStore {
             do {
                 let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [ManagedAnswer]
                 results = fetchedObjects?.map {
-                    $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp ?? Date())
+                    $0.toAnswerModel(string: $0.answer ?? "", date: $0.timestamp ?? Date(), uuid: $0.uuid ?? UUID())
                 } ?? results
             } catch {
                 print(error)
@@ -96,16 +94,15 @@ class PersistenceService: PersistenceStore {
             let modelObject = ManagedAnswer(context: backgroundMOC)
             modelObject.answer = answer.answer.lowercased()
             modelObject.timestamp = answer.timestamp
+            modelObject.uuid = answer.uuid
             saveBackgroundMOC()
         }
     }
 
     func delete(answer: AnswerModel) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ManagedAnswer")
-        fetchRequest.predicate = NSPredicate(
-            format: "answer == %@",
-            argumentArray: [answer.answer, answer.timestamp]
-        )
+        fetchRequest.predicate = NSPredicate(format: "uuid == %@", answer.uuid as NSUUID)
+
         backgroundMOC.performAndWait {
             do {
                 let fetchedObjects = try backgroundMOC.fetch(fetchRequest) as? [NSManagedObject]

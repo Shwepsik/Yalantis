@@ -41,8 +41,6 @@ class SettingsViewController: UIViewController {
 
     private func setupTableView() {
         self.tableView.register(SettingTableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseIdentifier)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         self.view.addSubview(tableView)
 
         tableView.snp.makeConstraints { (make) in
@@ -51,6 +49,9 @@ class SettingsViewController: UIViewController {
             make.leading.equalTo(self.view)
             make.trailing.equalTo(self.view)
         }
+
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     @objc func showAlertForSavePhrase() {

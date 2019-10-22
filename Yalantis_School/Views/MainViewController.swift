@@ -63,6 +63,7 @@ class MainViewController: UIViewController {
     }
 
     private func fillView() {
+
         self.title = L10n.navigationTitle
         backgroundImageView.image = Asset.sky.image
         backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFill

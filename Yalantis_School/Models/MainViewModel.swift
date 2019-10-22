@@ -28,7 +28,8 @@ class MainViewModel {
         mainModel.getAnswer(question) { (answer) in
             let presentableAnswer = answer?.toPresentableAnswer(
                 string: answer?.answer.uppercased() ?? "",
-                date: self.string(from: answer?.timestamp ?? Date())
+                date: self.string(from: answer?.timestamp ?? Date()),
+                uuid: answer!.uuid
             )
             response(presentableAnswer)
         }
@@ -36,13 +37,13 @@ class MainViewModel {
 
     func fetchAllAnswers() -> [PresentableAnswer] {
         let presentableAnswer = mainModel.fetchAllAnswers().map {
-            $0.toPresentableAnswer(string: $0.answer.uppercased(), date: self.string(from: $0.timestamp))
+            $0.toPresentableAnswer(string: $0.answer.uppercased(), date: self.string(from: $0.timestamp), uuid: $0.uuid)
         }
         return presentableAnswer
     }
 
     func savePharse(presentableAnswer: PresentableAnswer) {
-        let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer, date: Date())
+        let answerModel = presentableAnswer.toAnswerModel(answer: presentableAnswer.answer, date: Date(), uuid: UUID())
         mainModel.save(answerModel)
     }
 
@@ -60,7 +61,8 @@ class MainViewModel {
     func delete(presentableAnswer: PresentableAnswer) {
         let answerModel = presentableAnswer.toAnswerModel(
             answer: presentableAnswer.answer.lowercased(),
-            date: date(from: presentableAnswer.timestamp ?? "")
+            date: date(from: presentableAnswer.timestamp ?? ""),
+            uuid: presentableAnswer.uuid ?? UUID()
         )
         mainModel.delete(answerModel)
     }
@@ -73,6 +75,6 @@ class MainViewModel {
 
     func date(from string: String) -> Date {
         let result = formatter.date(from: string)
-        return result!
+        return result ?? Date()
     }
 }

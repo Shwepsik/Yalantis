@@ -52,7 +52,7 @@ class MainModel {
 
         if answersPack.count == 0 {
             phrases.forEach { (phrase) in
-                let answer = AnswerModel(answer: phrase, timestamp: timestamp)
+                let answer = AnswerModel(answer: phrase, timestamp: timestamp, uuid: UUID())
                 save(answer)
             }
         }

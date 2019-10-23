@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38075885235FD33C00E6BB1B /* UIViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38075884235FD33C00E6BB1B /* UIViewAnimations.swift */; };
 		38277FB52345364B007BE803 /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB32345364B007BE803 /* Storyboard Segues.swift */; };
 		38277FB62345364B007BE803 /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB42345364B007BE803 /* Storyboard Scenes.swift */; };
 		38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38277FB923454FF9007BE803 /* PresentableAnswer.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38075884235FD33C00E6BB1B /* UIViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimations.swift; sourceTree = "<group>"; };
 		38277FB32345364B007BE803 /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Segues.swift"; sourceTree = "<group>"; };
 		38277FB42345364B007BE803 /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
 		38277FB923454FF9007BE803 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				3899F3CD2309CAD10051BA08 /* AlertController.swift */,
 				3899F3CF2309CADA0051BA08 /* HideKeyboard.swift */,
 				387ECF4A2357BE940049E62A /* ReusableTableViewCell.swift */,
+				38075884235FD33C00E6BB1B /* UIViewAnimations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */,
 				38B09B602353964600D45EB6 /* SettingsTableViewCell.swift in Sources */,
 				38C3978A23413E5000AAB042 /* MainViewModel.swift in Sources */,
+				38075885235FD33C00E6BB1B /* UIViewAnimations.swift in Sources */,
 				3899F3B62309CA470051BA08 /* AppDelegate.swift in Sources */,
 				38C3978823413D8600AAB042 /* MainModel.swift in Sources */,
 				38277FB62345364B007BE803 /* Storyboard Scenes.swift in Sources */,

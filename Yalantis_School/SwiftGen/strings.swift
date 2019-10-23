@@ -15,8 +15,6 @@ internal enum L10n {
   internal static let addSomeText = L10n.tr("Localizable", "add_some_text")
   /// Your Answer
   internal static let alertPlaceholder = L10n.tr("Localizable", "alert_placeholder")
-  /// Shake me to get the answer
-  internal static let answerLabelText = L10n.tr("Localizable", "answer_label_text")
   /// Ball
   internal static let ball = L10n.tr("Localizable", "ball")
   /// Cancel
@@ -25,6 +23,8 @@ internal enum L10n {
   internal static let descriptionLabelText = L10n.tr("Localizable", "description_label_text")
   /// Here you can add own answer
   internal static let hereUCanAddOwnAnswer = L10n.tr("Localizable", "here_u_can_add_own_answer")
+  /// Shake me to get the answer
+  internal static let mainDescriptionLabelText = L10n.tr("Localizable", "main_description_label_text")
   /// Your Question
   internal static let mainTextFieldPlaceholder = L10n.tr("Localizable", "main_textField_placeholder")
   /// Magic Ball

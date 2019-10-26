@@ -116,19 +116,18 @@ class MainViewController: UIViewController {
     }
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            mainViewModel.addShakeCount()
-            if questionTextField.text != "" {
-                magicBallView.shakeAnimation(viewToAnimate: magicBallView, delegate: self)
-                mainViewModel.getAnswer(question: questionTextField.text!) { (answer) in
-                    self.answerLabel.text = ""
-                    self.answerLabel.text = answer?.answer
-                }
-            } else {
-                self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
+        guard motion == .motionShake else { return }
+        mainViewModel.addShakeCount()
+        if questionTextField.text != "" {
+            magicBallView.shakeAnimation(delegate: self)
+            mainViewModel.getAnswer(question: questionTextField.text ?? "") { (answer) in
+                self.answerLabel.text = ""
+                self.answerLabel.text = answer?.answer
             }
-            self.getShakeCounts()
+        } else {
+            self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
         }
+        self.getShakeCounts()
     }
 }
 
@@ -141,8 +140,8 @@ extension MainViewController: CAAnimationDelegate {
     }
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag == true && answerLabel.text == "" {
-            magicBallView.shakeAnimation(viewToAnimate: magicBallView, delegate: self)
+        if flag && answerLabel.text?.isEmpty ?? true {
+            magicBallView.shakeAnimation(delegate: self)
         } else {
             self.answerLabel.isHidden = false
         }

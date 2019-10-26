@@ -11,14 +11,14 @@ import UIKit
 
 extension UIView {
 
-    func shakeAnimation(viewToAnimate: UIView, delegate: CAAnimationDelegate) {
+    func shakeAnimation(delegate: CAAnimationDelegate) {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.07
         animation.repeatCount = 5
         animation.autoreverses = true
         animation.delegate = delegate
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: viewToAnimate.center.x - 10, y: viewToAnimate.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: viewToAnimate.center.x + 10, y: viewToAnimate.center.y))
-        viewToAnimate.layer.add(animation, forKey: "position")
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10, y: self.center.y))
+        self.layer.add(animation, forKey: "position")
     }
 }

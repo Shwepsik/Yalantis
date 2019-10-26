@@ -8,7 +8,7 @@
 
 
 // Main View Controller
-"answer_label_text" = "Shake me to get the answer";
+"main_description_label_text" = "Shake me to get the answer";
 "main_textField_placeholder" = "Your Question";
 
 // Settings View Controller

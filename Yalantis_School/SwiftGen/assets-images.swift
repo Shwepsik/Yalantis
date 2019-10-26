@@ -20,6 +20,7 @@
 internal enum Asset {
   internal static let ball = ImageAsset(name: "ball")
   internal static let button = ImageAsset(name: "button")
+  internal static let icon = ImageAsset(name: "icon")
   internal static let plus = ImageAsset(name: "plus")
   internal static let settings = ImageAsset(name: "settings")
   internal static let sky = ImageAsset(name: "sky")

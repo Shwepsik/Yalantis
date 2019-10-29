@@ -8,20 +8,23 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class MainViewController: UIViewController {
 
     var mainViewModel: MainViewModel!
-
     private let questionTextField = UITextField()
     private let answerLabel = UILabel()
     private let shakeCountsLabel = UILabel()
     private let backgroundImageView = UIImageView()
     private let magicBallView = UIImageView()
     private let descriptionLabel = UILabel()
+    private var shouldAnimate: Bool = false
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupBingings()
         self.getShakeCounts()
         self.fillView()
         self.addConstraints()
@@ -48,9 +51,9 @@ class MainViewController: UIViewController {
         shakeCountsLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(self.view).offset(15)
             if #available(iOS 11.0, *) {
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
             } else {
-                make.top.equalTo(self.topLayoutGuide.snp.bottom).offset(10)
+                make.bottom.equalTo(self.topLayoutGuide.snp.top).offset(-10)
             }
             make.width.greaterThanOrEqualTo(20)
             make.height.equalTo(40)
@@ -81,6 +84,8 @@ class MainViewController: UIViewController {
         descriptionLabel.text = L10n.mainDescriptionLabelText
         descriptionLabel.textAlignment = .center
         descriptionLabel.textColor = .white
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.minimumScaleFactor = 0.5
         descriptionLabel.font = FontFamily.SFProDisplay.medium.font(size: 30)
         self.view.addSubview(descriptionLabel)
 
@@ -109,25 +114,38 @@ class MainViewController: UIViewController {
         view.addSubview(shakeCountsLabel)
     }
 
-   private func getShakeCounts() {
-        mainViewModel.getShakeCount { (shake) in
-            self.shakeCountsLabel.text = shake.shakeCount
-        }
+    private func getShakeCounts() {
+        mainViewModel.getShakeCount.onNext(())
+    }
+
+    private func setupBingings() {
+        mainViewModel.shouldUpdateAnswer.subscribe(onNext: { [weak self] (answer) in
+            guard let self = self else { return }
+            self.answerLabel.text = answer.answer
+        }).disposed(by: disposeBag)
+
+        mainViewModel.shouldUpdateShakeCount.subscribe(onNext: { [weak self] (count) in
+            guard let self = self else { return }
+            self.shakeCountsLabel.text = count.shakeCount
+        }).disposed(by: disposeBag)
+
+        mainViewModel.shouldStartAnimation.subscribe(onNext: { [weak self] (isFinish) in
+            guard let self = self else { return }
+            self.shouldAnimate = isFinish
+            if isFinish {
+                self.magicBallView.shakeAnimation(delegate: self)
+            }
+        }).disposed(by: disposeBag)
     }
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
-        mainViewModel.addShakeCount()
         if questionTextField.text != "" {
-            magicBallView.shakeAnimation(delegate: self)
-            mainViewModel.getAnswer(question: questionTextField.text ?? "") { (answer) in
-                self.answerLabel.text = ""
-                self.answerLabel.text = answer?.answer
-            }
+            mainViewModel.shakeAction.onNext(())
+            mainViewModel.getAnswer(question: questionTextField.text ?? "")
         } else {
             self.showAlert(title: L10n.addSomeText, messgae: "", style: .alert)
         }
-        self.getShakeCounts()
     }
 }
 
@@ -141,7 +159,7 @@ extension MainViewController: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag && answerLabel.text?.isEmpty ?? true {
-            magicBallView.shakeAnimation(delegate: self)
+            mainViewModel.shouldStartAnimation.onNext(true)
         } else {
             self.answerLabel.isHidden = false
         }

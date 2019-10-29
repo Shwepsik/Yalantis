@@ -14,6 +14,7 @@
 		38315072234AABEA00BFB368 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38315071234AABEA00BFB368 /* KeyChainService.swift */; };
 		3831507D234D299F00BFB368 /* ShakeCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831507C234D299F00BFB368 /* ShakeCountModel.swift */; };
 		3831507F234D29DC00BFB368 /* PresentableShakeCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */; };
+		38361FC92367C9620018FDD8 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38361FC82367C9620018FDD8 /* SectionViewModel.swift */; };
 		38533A242338FE86002108C4 /* assets-images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A222338FE86002108C4 /* assets-images.swift */; };
 		38533A252338FE86002108C4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38533A232338FE86002108C4 /* strings.swift */; };
 		38533B62233BF5DC002108C4 /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38533B61233BF5DC002108C4 /* Colors.txt */; };
@@ -54,6 +55,7 @@
 		38315071234AABEA00BFB368 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		3831507C234D299F00BFB368 /* ShakeCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeCountModel.swift; sourceTree = "<group>"; };
 		3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableShakeCount.swift; sourceTree = "<group>"; };
+		38361FC82367C9620018FDD8 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		38426C34235E485D001A774B /* Yalantis_School 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Yalantis_School 3.xcdatamodel"; sourceTree = "<group>"; };
 		38533A222338FE86002108C4 /* assets-images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "assets-images.swift"; sourceTree = "<group>"; };
 		38533A232338FE86002108C4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				3831507C234D299F00BFB368 /* ShakeCountModel.swift */,
 				3831507E234D29DC00BFB368 /* PresentableShakeCount.swift */,
 				38277FB923454FF9007BE803 /* PresentableAnswer.swift */,
+				38361FC82367C9620018FDD8 /* SectionViewModel.swift */,
 			);
 			path = "Data Transfer Object";
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				38533B64233BF6C9002108C4 /* Colors.swift in Sources */,
 				387ECF4D23587CEF0049E62A /* TabBarController.swift in Sources */,
 				38277FBA23454FF9007BE803 /* PresentableAnswer.swift in Sources */,
+				38361FC92367C9620018FDD8 /* SectionViewModel.swift in Sources */,
 				3899F3CE2309CAD10051BA08 /* AlertController.swift in Sources */,
 				3899F3CB2309CA5C0051BA08 /* PersistenceService.swift in Sources */,
 				387ECF2F2355047D0049E62A /* Yalantis_School.xcdatamodeld in Sources */,

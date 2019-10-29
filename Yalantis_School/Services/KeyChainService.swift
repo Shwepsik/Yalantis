@@ -9,11 +9,9 @@
 import Foundation
 import SwiftKeychainWrapper
 
-typealias ShakeCountModelResponse = (_ result: ShakeCountModel) -> Void
-
 protocol SecureStorage {
     func addShakeCount()
-    func getShakeCount(_ responseBlock: @escaping (ShakeCountModelResponse))
+    func getShakeCount() -> ShakeCountModel
 }
 
 class KeyChainService: SecureStorage {
@@ -26,9 +24,9 @@ class KeyChainService: SecureStorage {
         keyChainWrapper.set(newShakeCounts, forKey: shakeCountKey)
     }
 
-    func getShakeCount(_ responseBlock: @escaping (ShakeCountModelResponse)) {
+    func getShakeCount() -> ShakeCountModel {
         let getShakeCounts: Int? = keyChainWrapper.integer(forKey: shakeCountKey)
         let shakeCountModel = ShakeCountModel(shakeCount: getShakeCounts ?? 0)
-        responseBlock(shakeCountModel)
+        return shakeCountModel
     }
 }

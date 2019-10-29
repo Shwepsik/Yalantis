@@ -12,5 +12,9 @@ target 'Yalantis_School' do
   pod 'SnapKit', '~> 5.0.0'
   #KeyChain
   pod 'SwiftKeychainWrapper', '~> 3.4'
+  #RxSwift
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'RxDataSources', '~> 4.0'
 
 end

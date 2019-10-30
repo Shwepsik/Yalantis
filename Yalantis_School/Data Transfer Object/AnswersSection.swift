@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import RxDataSources
 
-struct SectionViewModel {
+struct AnswersSection {
     var header: String
     var items: [PresentableAnswer]
 }
 
-extension SectionViewModel: AnimatableSectionModelType {
+extension AnswersSection: AnimatableSectionModelType {
 
     typealias Identity = String
 
@@ -25,7 +25,7 @@ extension SectionViewModel: AnimatableSectionModelType {
 
     typealias Item = PresentableAnswer
 
-    init(original: SectionViewModel, items: [PresentableAnswer]) {
+    init(original: AnswersSection, items: [PresentableAnswer]) {
         self = original
         self.items = items
     }

@@ -9,17 +9,11 @@
 import Foundation
 import RxDataSources
 
-class PresentableAnswer {
+struct PresentableAnswer {
 
     var answer: String
-    var timestamp: String
-    var uuid: UUID
-
-    init(answer: String, timestamp: String, uuid: UUID) {
-        self.answer = answer
-        self.timestamp = timestamp
-        self.uuid = uuid
-    }
+    var timestamp: String?
+    var uuid: UUID?
 }
 
 extension PresentableAnswer: IdentifiableType, Equatable {
@@ -27,7 +21,7 @@ extension PresentableAnswer: IdentifiableType, Equatable {
     typealias Identity = UUID
 
     var identity: Identity {
-        return uuid
+        return uuid ?? UUID()
     }
 
     static func == (lhs: PresentableAnswer, rhs: PresentableAnswer) -> Bool {

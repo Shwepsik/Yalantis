@@ -34,7 +34,9 @@ class TabBarController: UITabBarController {
                                   keyChainService: keyChainService)
         let mainViewModel = MainViewModel(mainModel: mainModel)
         mainViewController.mainViewModel = mainViewModel
-        settingsViewController.mainViewModel = mainViewModel
+        let settingsModel = SettingsModel(persistenceService: persistenceService)
+        let settingsViewModel = SettingsViewModel(settingsModel: settingsModel)
+        settingsViewController.settingsViewModel = settingsViewModel
         let firstTabBarVC = UINavigationController(rootViewController: mainViewController)
         firstTabBarVC.tabBarItem = UITabBarItem(
         title: L10n.ball,

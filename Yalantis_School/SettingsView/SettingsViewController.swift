@@ -13,12 +13,12 @@ import RxDataSources
 
 class SettingsViewController: UIViewController {
 
-    var mainViewModel: MainViewModel!
+    var settingsViewModel: SettingsViewModel!
     private var tableView = UITableView()
     private var alertTextField = UITextField()
     private let cellReuseIdentifier = "SettingTableViewCell"
     private let disposeBag = DisposeBag()
-    fileprivate var dataSource: RxTableViewSectionedAnimatedDataSource<SectionViewModel>?
+    fileprivate var dataSource: RxTableViewSectionedAnimatedDataSource<AnswersSection>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +31,11 @@ class SettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mainViewModel.fetchAnswers()
+        settingsViewModel.fetchAnswers()
     }
 
     private func setupDataSource() {
-        dataSource = RxTableViewSectionedAnimatedDataSource<SectionViewModel>(
+        dataSource = RxTableViewSectionedAnimatedDataSource<AnswersSection>(
             configureCell: { (_, tableView, indexPath, presentableAnswer) -> UITableViewCell in
                 let cell: SettingTableViewCell = tableView.dequeueReusableCell(for: indexPath)
                 cell.answerLabel.text = presentableAnswer.answer
@@ -45,8 +45,8 @@ class SettingsViewController: UIViewController {
             return true
         })
 
-        mainViewModel.shouldFetchAnswers.asObservable()
-            .map({ [SectionViewModel(header: "", items: $0)]})
+        settingsViewModel.answersPack.asObservable()
+            .map { [AnswersSection(header: "", items: $0)]}
             .bind(to: tableView.rx.items(dataSource: dataSource!))
             .disposed(by: disposeBag)
     }
@@ -77,7 +77,7 @@ class SettingsViewController: UIViewController {
 
         tableView.rx.itemDeleted.subscribe(onNext: { [weak self] indexPath in
             guard let `self` = self else { return }
-            self.mainViewModel.deleteAnswer(by: indexPath)
+            self.settingsViewModel.deleteAnswer(by: indexPath)
         }).disposed(by: disposeBag)
     }
 
@@ -93,9 +93,9 @@ class SettingsViewController: UIViewController {
 
         let saveAction = UIAlertAction(title: L10n.saveButton, style: .default) { (_) in
             if let text = self.alertTextField.text, !text.isEmpty {
-                let answer = PresentableAnswer(answer: self.alertTextField.text!, timestamp: "", uuid: UUID())
-                self.mainViewModel.shouldAddAnswer.onNext(answer)
-                self.mainViewModel.fetchAnswers()
+                let answer = PresentableAnswer(answer: self.alertTextField.text!)
+                self.settingsViewModel.answerToAdd.onNext(answer)
+                self.settingsViewModel.fetchAnswers()
             }
         }
 

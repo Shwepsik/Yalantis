@@ -119,15 +119,15 @@ class MainViewController: UIViewController {
     }
 
     private func setupBingings() {
-        mainViewModel.shouldUpdateAnswer.subscribe(onNext: { [weak self] (answer) in
+        mainViewModel.answerFromApi.subscribe(onNext: { [weak self] (answer) in
             guard let self = self else { return }
             self.answerLabel.text = answer.answer
         }).disposed(by: disposeBag)
 
-        mainViewModel.shouldUpdateShakeCount.subscribe(onNext: { [weak self] (count) in
-            guard let self = self else { return }
+        mainViewModel.shakesCount.bind { (count) in
+            guard let count = count else { return }
             self.shakeCountsLabel.text = count.shakeCount
-        }).disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
 
         mainViewModel.shouldStartAnimation.subscribe(onNext: { [weak self] (isFinish) in
             guard let self = self else { return }

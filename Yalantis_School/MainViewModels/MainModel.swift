@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 class MainModel {
 
@@ -15,15 +16,11 @@ class MainModel {
     private let persistenceService: PersistenceStore
     private let keyChainService: SecureStorage
     private let disposeBag = DisposeBag()
-    let shouldUpdateAnswer = PublishSubject<AnswerModel>()
-    let shouldUpdateShakeCount = PublishSubject<ShakeCountModel>()
     let getShakeCount = PublishSubject<Void>()
     let shakeAction = PublishSubject<Void>()
-    let shouldStartAnimation = BehaviorSubject<Bool>(value: false)
-    let shouldFetchAnswers = PublishSubject<[AnswerModel]>()
-    let shouldDeleteAnswer = PublishSubject<AnswerModel>()
-    let shouldAddAnswer = PublishSubject<AnswerModel>()
-    let timestamp = Date()
+    let shouldStartAnimation = PublishSubject<Bool>()//BehaviorSubject<Bool>(value: false)
+    let shakesCount = BehaviorRelay<ShakeCountModel?>(value: nil)//PublishSubject<ShakeCountModel>()
+    let answerFromApi = PublishSubject<AnswerModel>()
 
     init(dataFetcher: DataFetching, persistenceService: PersistenceStore, keyChainService: SecureStorage) {
         self.dataFetcher = dataFetcher
@@ -35,24 +32,14 @@ class MainModel {
     private func setupBindings() {
         getShakeCount.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
-            self.shouldUpdateShakeCount.onNext(self.keyChainService.getShakeCount())
+            self.shakesCount.accept(self.keyChainService.getShakeCount())
         }).disposed(by: disposeBag)
 
         shakeAction.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
             self.shouldStartAnimation.onNext(true)
             self.addShakeCount()
-            self.shouldUpdateShakeCount.onNext(self.keyChainService.getShakeCount())
-        }).disposed(by: disposeBag)
-
-        shouldDeleteAnswer.subscribe(onNext: { [weak self] (answer) in
-            guard let self = self else { return }
-            self.delete(answer)
-        }).disposed(by: disposeBag)
-
-        shouldAddAnswer.subscribe(onNext: { [weak self] (answer) in
-            guard let self = self else { return }
-            self.save(answer)
+            self.shakesCount.accept(self.keyChainService.getShakeCount())
         }).disposed(by: disposeBag)
     }
 
@@ -61,26 +48,23 @@ class MainModel {
             if error != nil {
                 let answers = self.persistenceService.fetch()
                 let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
-                self.shouldUpdateAnswer.onNext(offlineAnswer)
+                self.answerFromApi.onNext(offlineAnswer)
                 self.shouldStartAnimation.onNext(false)
             } else {
                 guard let answer = answer else { return }
-                self.shouldUpdateAnswer.onNext(answer)
+                self.answerFromApi.onNext(answer)
                 self.shouldStartAnimation.onNext(false)
                 self.save(answer)
             }
         }
     }
 
-    func addShakeCount() {
+    private func addShakeCount() {
         keyChainService.addShakeCount()
     }
 
-    func getShake() {
-        _ = keyChainService.getShakeCount()
-    }
-
     func createPhrase() {
+        let timestamp = Date()
         let answersPack = persistenceService.fetch()
         let phrases = ["Try to think about it tomorrow", "Great idea!", "Burn them all",
                        "It’s better to wait a little", "Ask your heart"]
@@ -93,16 +77,7 @@ class MainModel {
         }
     }
 
-    func fetchAnswers() {
-        let answerPack = persistenceService.fetch()
-        shouldFetchAnswers.onNext(answerPack)
-    }
-
-    func save(_ answerModel: AnswerModel) {
+    private func save(_ answerModel: AnswerModel) {
         persistenceService.save(answer: answerModel)
-    }
-
-    func delete(_ answerModel: AnswerModel) {
-        persistenceService.delete(answer: answerModel)
     }
 }

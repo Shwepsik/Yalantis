@@ -18,9 +18,9 @@ class MainModel {
     private let disposeBag = DisposeBag()
     let getShakeCount = PublishSubject<Void>()
     let shakeAction = PublishSubject<Void>()
-    let shouldStartAnimation = PublishSubject<Bool>()//BehaviorSubject<Bool>(value: false)
-    let shakesCount = BehaviorRelay<ShakeCountModel?>(value: nil)//PublishSubject<ShakeCountModel>()
-    let answerFromApi = PublishSubject<AnswerModel>()
+    let shouldStartAnimation = PublishSubject<Bool>()
+    let shakesCount = BehaviorRelay<ShakeCountModel>(value: ShakeCountModel(shakeCount: 0))
+    let answer = PublishSubject<AnswerModel>()
 
     init(dataFetcher: DataFetching, persistenceService: PersistenceStore, keyChainService: SecureStorage) {
         self.dataFetcher = dataFetcher
@@ -48,11 +48,11 @@ class MainModel {
             if error != nil {
                 let answers = self.persistenceService.fetch()
                 let offlineAnswer = answers[Int(arc4random_uniform(UInt32(answers.count)))]
-                self.answerFromApi.onNext(offlineAnswer)
+                self.answer.onNext(offlineAnswer)
                 self.shouldStartAnimation.onNext(false)
             } else {
                 guard let answer = answer else { return }
-                self.answerFromApi.onNext(answer)
+                self.answer.onNext(answer)
                 self.shouldStartAnimation.onNext(false)
                 self.save(answer)
             }

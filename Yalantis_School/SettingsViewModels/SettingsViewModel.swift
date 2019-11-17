@@ -26,35 +26,39 @@ class SettingsViewModel {
     }
 
     func setupBindings() {
-        settingsModel.answersPack.subscribe(onNext: { [weak self] (answer) in
-            guard let self = self else { return }
-            let presentableAnswer = answer.map { $0.toPresentableAnswer(
-                string: $0.answer.uppercased(),
-                date: self.string(from: $0.timestamp),
-                uuid: $0.uuid)
+        settingsModel.answersPack
+            .map {
+                $0.map {
+                    $0.toPresentableAnswer(
+                        string: $0.answer.uppercased(),
+                        date: self.string(from: $0.timestamp),
+                        uuid: $0.uuid)
+                }
             }
-            self.answersPack.onNext(presentableAnswer)
-        }).disposed(by: disposeBag)
+        .bind(to: answersPack)
+        .disposed(by: disposeBag)
 
-        answerToDelete.subscribe(onNext: { [weak self] (presentableAnswer) in
-            guard let self = self else { return }
-            let answer = presentableAnswer.toAnswerModel(
-                answer: presentableAnswer.answer.lowercased(),
-                date: self.date(from: presentableAnswer.timestamp ?? ""),
-                uuid: presentableAnswer.uuid ?? UUID()
-            )
-            self.settingsModel.answerToDelete.onNext(answer)
-        }).disposed(by: disposeBag)
+        answerToDelete
+            .map {
+                $0.toAnswerModel(
+                    answer: $0.answer,
+                    date: self.date(from: $0.timestamp ?? ""),
+                    uuid: $0.uuid ?? UUID()
+                )
+            }
+        .bind(to: settingsModel.answerToDelete)
+        .disposed(by: disposeBag)
 
-        answerToAdd.subscribe(onNext: { [weak self] (presentableAnswer) in
-            guard let self = self else { return }
-            let answer = presentableAnswer.toAnswerModel(
-                answer: presentableAnswer.answer,
-                date: Date(),
-                uuid: UUID()
-            )
-            self.settingsModel.answerToAdd.onNext(answer)
-        }).disposed(by: disposeBag)
+        answerToAdd
+            .map {
+                $0.toAnswerModel(
+                    answer: $0.answer,
+                    date: Date(),
+                    uuid: UUID()
+                )
+            }
+        .bind(to: settingsModel.answerToAdd)
+        .disposed(by: disposeBag)
     }
 
     func deleteAnswer(by indexPath: IndexPath) {

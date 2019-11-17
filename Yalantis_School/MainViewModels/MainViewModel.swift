@@ -19,7 +19,7 @@ class MainViewModel {
     let shakeAction = PublishSubject<Void>()
     let getShakeCount = PublishSubject<Void>()
     let answerToAdd = PublishSubject<PresentableAnswer>()
-    let answerFromApi = PublishSubject<PresentableAnswer>()
+    let answer = PublishSubject<PresentableAnswer>()
     let shakesCount = BehaviorRelay<PresentableShakeCount?>(value: nil)
 
     init(mainModel: MainModel) {
@@ -36,31 +36,34 @@ class MainViewModel {
     }
 
     private func setupBindings() {
-        mainModel.answerFromApi.subscribe(onNext: { [weak self] (answer) in
-            guard let self = self else { return }
-            let presentableAnswer = answer.toPresentableAnswer(
-                string: answer.answer.uppercased(),
-                date: self.string(from: answer.timestamp),
-                uuid: answer.uuid
-            )
-            self.answerFromApi.onNext((presentableAnswer))
-        }).disposed(by: disposeBag)
+//        mainModel.answer.subscribe(onNext: { [weak self] (answer) in
+//            guard let self = self else { return }
+//            let presentableAnswer = answer.toPresentableAnswer(
+//                string: answer.answer.uppercased(),
+//                date: self.string(from: answer.timestamp),
+//                uuid: answer.uuid
+//            )
+//            self.answerFromApi.onNext((presentableAnswer))
+//        }).disposed(by: disposeBag)
 
-        getShakeCount.subscribe(onNext: { [weak self] (_) in
-            guard let self = self else { return }
-            self.mainModel.getShakeCount.onNext(())
-        }).disposed(by: disposeBag)
+        mainModel.answer
+            .map { $0.toPresentableAnswer(
+                string: $0.answer.uppercased(),
+                date: self.string(from: $0.timestamp),
+                uuid: $0.uuid
+                )
+            }
+            .bind(to: answer)
+            .disposed(by: disposeBag)
 
-        mainModel.shakesCount.bind { (count) in
-            guard let count = count else { return }
-            let presentableShakeCount = count.toPresentableShakeCount(intenger: count.shakeCount)
-            self.shakesCount.accept(presentableShakeCount)
-        }.disposed(by: disposeBag)
+        getShakeCount.bind(to: mainModel.getShakeCount).disposed(by: disposeBag)
 
-        shakeAction.subscribe(onNext: { [weak self] (_) in
-            guard let self = self else { return }
-            self.mainModel.shakeAction.onNext(())
-        }).disposed(by: disposeBag)
+        shakeAction.bind(to: mainModel.shakeAction).disposed(by: disposeBag)
+
+        mainModel.shakesCount
+            .map { $0.toPresentableShakeCount(intenger: $0.shakeCount) }
+            .bind(to: shakesCount)
+            .disposed(by: disposeBag)
 
         mainModel.shouldStartAnimation.bind(to: shouldStartAnimation).disposed(by: disposeBag)
     }

@@ -7,27 +7,48 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 class SettingsViewController: UIViewController {
 
-    var mainViewModel: MainViewModel!
+    var settingsViewModel: SettingsViewModel!
     private var tableView = UITableView()
-    private var answerInfo = [PresentableAnswer]()
     private var alertTextField = UITextField()
-    private var answerPack = [PresentableAnswer]()
     private let cellReuseIdentifier = "SettingTableViewCell"
+    private let disposeBag = DisposeBag()
+    fileprivate var dataSource: RxTableViewSectionedAnimatedDataSource<AnswersSection>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupBarButtonItems()
         self.setupTableView()
         self.tapToHide()
+        self.setupBindings()
+        self.setupDataSource()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        answerPack = mainViewModel.fetchAllAnswers()
-        self.tableView.reloadData()
+        settingsViewModel.fetchAnswers()
+    }
+
+    private func setupDataSource() {
+        dataSource = RxTableViewSectionedAnimatedDataSource<AnswersSection>(
+            configureCell: { (_, tableView, indexPath, presentableAnswer) -> UITableViewCell in
+                let cell: SettingTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.answerLabel.text = presentableAnswer.answer
+                cell.timeStampLabel.text = presentableAnswer.timestamp
+                return cell
+        }, canEditRowAtIndexPath: { _, _ -> Bool in
+            return true
+        })
+
+        settingsViewModel.answersPack.asObservable()
+            .map { [AnswersSection(header: "", items: $0)]}
+            .bind(to: tableView.rx.items(dataSource: dataSource!))
+            .disposed(by: disposeBag)
     }
 
     private func setupBarButtonItems() {
@@ -49,9 +70,15 @@ class SettingsViewController: UIViewController {
             make.leading.equalTo(self.view)
             make.trailing.equalTo(self.view)
         }
+    }
 
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+    private func setupBindings() {
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+
+        tableView.rx.itemDeleted.subscribe(onNext: { [weak self] indexPath in
+            guard let `self` = self else { return }
+            self.settingsViewModel.deleteAnswer(by: indexPath)
+        }).disposed(by: disposeBag)
     }
 
     @objc func showAlertForSavePhrase() {
@@ -67,9 +94,8 @@ class SettingsViewController: UIViewController {
         let saveAction = UIAlertAction(title: L10n.saveButton, style: .default) { (_) in
             if let text = self.alertTextField.text, !text.isEmpty {
                 let answer = PresentableAnswer(answer: self.alertTextField.text!)
-                self.mainViewModel.savePharse(presentableAnswer: answer)
-                self.answerPack = self.mainViewModel.fetchAllAnswers()
-                self.tableView.reloadData()
+                self.settingsViewModel.answerToAdd.onNext(answer)
+                self.settingsViewModel.fetchAnswers()
             }
         }
 
@@ -82,31 +108,9 @@ class SettingsViewController: UIViewController {
     }
 }
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return answerPack.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SettingTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.answerLabel.text = answerPack[indexPath.row].answer
-        cell.timeStampLabel.text = answerPack[indexPath.row].timestamp
-        return cell
-    }
+extension SettingsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
-    }
-
-    func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .left)
-            mainViewModel.delete(presentableAnswer: answerPack[indexPath.row])
-            answerPack.remove(at: indexPath.row)
-            tableView.endUpdates()
-        }
+        return 70
     }
 }

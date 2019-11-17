@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 struct PresentableAnswer {
 
@@ -15,7 +16,17 @@ struct PresentableAnswer {
     var uuid: UUID?
 }
 
-extension PresentableAnswer {
+extension PresentableAnswer: IdentifiableType, Equatable {
+
+    typealias Identity = UUID
+
+    var identity: Identity {
+        return uuid ?? UUID()
+    }
+
+    static func == (lhs: PresentableAnswer, rhs: PresentableAnswer) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
 
     func toAnswerModel(answer: String, date: Date, uuid: UUID) -> AnswerModel {
         return AnswerModel(answer: answer, timestamp: date, uuid: uuid)

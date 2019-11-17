@@ -1,5 +1,16 @@
 PODS:
   - Alamofire (4.8.2)
+  - Differentiator (4.0.1)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - SnapKit (5.0.1)
   - SwiftGen (6.1.0)
   - SwiftKeychainWrapper (3.4.0)
@@ -7,6 +18,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - RxCocoa (~> 5)
+  - RxDataSources (~> 4.0)
+  - RxSwift (~> 5)
   - SnapKit (~> 5.0.0)
   - SwiftGen (~> 6.0)
   - SwiftKeychainWrapper (~> 3.4)
@@ -16,6 +30,11 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
   trunk:
+    - Differentiator
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
     - SnapKit
     - SwiftGen
     - SwiftKeychainWrapper
@@ -23,11 +42,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 9c1a679b8ab91363b517363b77a80725c44e4707
+PODFILE CHECKSUM: 2cacc7a2d55f5adbf1f5020d03791e9ff95c5a24
 
 COCOAPODS: 1.8.0.beta.2
